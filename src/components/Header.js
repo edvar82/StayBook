@@ -8,8 +8,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Header.css';
 import { DateRange } from 'react-date-range';
 import { useState } from 'react';
-import 'react-date-range/dist/styles.css'; // main css file
-import 'react-date-range/dist/theme/default.css'; // theme css file
+import 'react-date-range/dist/styles.css'; 
+import 'react-date-range/dist/theme/default.css'; 
 import { format } from 'date-fns';
 import React from 'react';
 import { useRef } from 'react';
@@ -41,10 +41,32 @@ const Header = ({ type }) => {
     });
   };
 
+  const headerRef = useRef(null);
+  useEffect(() => {
+    // Função que fecha o input e opções abertos
+    const handleClickOutside = (event) => {
+      if (headerRef.current && !headerRef.current.contains(event.target)) {
+        setOpenDate(false);
+        setOpenOptions(false);
+      }
+    };
+
+    // Adiciona o event listener ao carregar o componente
+    document.addEventListener('click', handleClickOutside);
+
+    // Remove o event listener ao descarregar o componente
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
+
   const handleSearch = () => {};
 
   return (
-    <div className="headerSearch">
+    <div
+      className="headerSearch"
+      ref={headerRef}
+    >
       <div className="headerSearchItem">
         <FontAwesomeIcon
           icon={faBed}
