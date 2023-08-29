@@ -2,7 +2,8 @@ import React from 'react';
 import Navbar from '../components/Navbar';
 import { MDBCarousel, MDBCarouselItem } from 'mdb-react-ui-kit';
 import logo from '../assets/img/logo copy.png';
-import homecss from '../pages/Home.css';
+import Header from '../components/Header';
+import './Home.css';
 
 export default function App() {
   return (
@@ -66,6 +67,7 @@ export default function App() {
           </div>
         </MDBCarouselItem>
       </MDBCarousel>
+      <Header />
     </div>
   );
 }

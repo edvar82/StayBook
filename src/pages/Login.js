@@ -17,13 +17,6 @@ export default function Login() {
             src={img}
             alt="logo"
           />
-
-          <label
-            htmlFor="Email"
-            className="form-label text-black"
-          >
-            Email
-          </label>
           <MDBInput
             className="mb-4"
             type="email"
@@ -31,12 +24,6 @@ export default function Login() {
             label="Email"
             style={{ width: '100%', height: '42px' }}
           />
-          <label
-            htmlFor="Senha"
-            className="form-label text-black"
-          >
-            Senha
-          </label>
           <MDBInput
             className="mb-4"
             type="password"
@@ -47,7 +34,7 @@ export default function Login() {
           <MDBBtn
             type="submit"
             className="mb-4 bg-black"
-            style={{ width: '100%', height: '48px' }}
+            style={{ width: '100%', height: '48px', fontSize: '16px' }}
             block
             onClick={() => {
               navigate('/home');

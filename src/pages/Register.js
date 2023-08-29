@@ -18,12 +18,6 @@ export default function Register() {
             alt="logo"
           />
 
-          <label
-            htmlFor="Email"
-            className="form-label text-black"
-          >
-            Email
-          </label>
           <MDBInput
             className="mb-4"
             type="email"
@@ -32,12 +26,6 @@ export default function Register() {
             style={{ width: '100%', height: '42px' }}
           />
 
-          <label
-            htmlFor="Nome"
-            className="form-label text-black"
-          >
-            Nome
-          </label>
           <MDBInput
             className="mb-4"
             type="text"
@@ -45,12 +33,7 @@ export default function Register() {
             label="Nome"
             style={{ width: '100%', height: '42px' }}
           />
-          <label
-            htmlFor="Senha"
-            className="form-label text-black"
-          >
-            Senha
-          </label>
+
           <MDBInput
             className="mb-4"
             type="password"
@@ -58,12 +41,7 @@ export default function Register() {
             label="Senha"
             style={{ width: '100%', height: '42px' }}
           />
-          <label
-            htmlFor="confirmarSenha"
-            className="form-label text-black"
-          >
-            Confirmar senha
-          </label>
+
           <MDBInput
             className="mb-4"
             type="password"
@@ -74,7 +52,7 @@ export default function Register() {
           <MDBBtn
             type="submit"
             className="mb-4 bg-black"
-            style={{ width: '100%', height: '48px' }}
+            style={{ width: '100%', height: '48px', fontSize: '16px' }}
             block
             onClick={() => {
               navigate('/login');
