@@ -1,0 +1,26 @@
+h5 {
+    font-size: xx-large;
+    font-weight: bold;
+    text-align: center;
+    color: #000000;
+    margin-top: 10px;   
+}
+p {
+    padding-top: 20px;
+    font-size: x-large;
+    font-weight: bold;
+    text-align: center;
+    color: #000000;
+    margin-top: 10px;   
+}
+.back-opaco{
+    max-height: 100%;
+    height: 36rem;
+    margin-right: 700px;
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(2px);
+    justify-content: center;
+    text-align: center;
+    border-radius: 10px;
+    padding-top: 150px;
+}
