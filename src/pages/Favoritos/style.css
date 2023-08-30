@@ -1,0 +1,57 @@
+.cards {
+    display: flex;
+    margin-top: 20px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card {
+    width: 20vw;
+    height: 55vh;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: flex;
+    /* align-items: center; */
+}
+
+.image > img {
+    width: 330px;
+    height: 200px;
+    border-radius: 5%;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    margin-left: -15px;
+}
+
+.values {
+    display: flex;
+    margin-top: 20px;
+}
+
+.value{
+    margin-left: 45%;
+}
+.value > p {
+    font-weight: 900;
+}
+
+.valueDescricao {
+    margin-left: 15px;
+}
+
+.buttonEnd {
+    background-color: black;
+    color: white;
+    border: none;
+    width: 60%;
+    height: 50px;
+    margin-left: 20%;
+    margin-top: 20px;
+}

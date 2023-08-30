@@ -13,7 +13,7 @@ export default function Description() {
       <div className="container">
         <h2>Pousada Mar da Luz</h2>
         <div className="content">
-          <div className="image">
+          <div className="imagem">
             <img src="hotel.svg"></img>
             <div className="valores">
               <div className="valueDescription">

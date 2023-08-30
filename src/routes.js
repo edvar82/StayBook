@@ -11,6 +11,7 @@ import SignUp from "./pages/Register";
 import Home from "./pages/Home";
 import Error from "./pages/Error";
 import Description from "./pages/Description/Description";
+import Favoritos from "./pages/Favoritos/Favoritos";
 
 export default function Rotas() {
   return (
@@ -21,6 +22,7 @@ export default function Rotas() {
         <Route path="/home" element={<Home />}></Route>
         <Route path="*" element={<Error />}></Route>
         <Route path="/description" element={<Description />}></Route>
+        <Route path="/favoritos" element={<Favoritos/>}></Route>
       </Routes>
     </Router>
   );

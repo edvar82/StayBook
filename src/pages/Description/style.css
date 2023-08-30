@@ -18,12 +18,12 @@
     margin-top: 20px;
 }
 
-.image {
+.imagem {
     margin-top: 4%;
     margin-left: 5%;
 }
 
-.image > img {
+.imagem > img {
     width: 300px;
     height: 300px;
 }

@@ -12,9 +12,12 @@ import {
   MDBInputGroup,
 } from 'mdb-react-ui-kit';
 import logo from '../assets/img/logo.png';
+import { useNavigate } from 'react-router-dom';
 
 export default function Navbar() {
   const [showBasic, setShowBasic] = useState(false);
+  
+  const navigate = useNavigate();
 
   return (
     <MDBNavbar
@@ -63,6 +66,7 @@ export default function Navbar() {
                   lineHeight: '28px',
                   marginRight: '30px',
                 }}
+                onClick={() => {navigate('/favoritos')}}
               >
                 <MDBIcon
                   far
