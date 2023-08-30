@@ -10,6 +10,7 @@
   height: 55vh;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   display: flex;
+  border-radius: 10px;
 }
 
 .image > img {
@@ -46,6 +47,7 @@
 }
 
 .buttonEnd {
+  border-radius: 10px;
   background-color: black;
   color: white;
   border: none;

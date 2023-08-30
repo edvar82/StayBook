@@ -8,11 +8,20 @@ export default function Favoritos() {
   return (
     <>
       <Navbar />
-      <div className="container" style={{ marginTop: '60px' }}>
+      <div
+        className="container"
+        style={{ marginTop: '60px' }}
+      >
         <h2>Favoritos</h2>
-        <div className="cards2">
+        <div
+          className="cards2"
+          style={{marginRight: '200px'}}
+        >
           <div className="card2">
-            <div className="image">
+            <div
+              className="image"
+              style={{ zoom: '0.80', margin: 'auto', marginLeft: '20px' }}
+            >
               <img src="hotel2.jpeg"></img>
               <div className="text">
                 <strong>Pousada mar da luz</strong>
@@ -35,13 +44,17 @@ export default function Favoritos() {
                 className="buttonEnd"
                 onClick={() => {
                   navigate('/description');
-                }}>
+                }}
+              >
                 Ver Acomodação
               </button>
             </div>
           </div>
           <div className="card2">
-            <div className="image">
+            <div
+              className="image"
+              style={{ zoom: '0.80', margin: 'auto', marginLeft: '20px' }}
+            >
               <img src="hotel2.jpeg"></img>
               <div className="text">
                 <strong>Pousada mar da luz</strong>
@@ -64,13 +77,17 @@ export default function Favoritos() {
                 className="buttonEnd"
                 onClick={() => {
                   navigate('/description');
-                }}>
+                }}
+              >
                 Ver Acomodação
               </button>
             </div>
           </div>
           <div className="card2">
-            <div className="image">
+            <div
+              className="image"
+              style={{ zoom: '0.80', margin: 'auto', marginLeft: '20px' }}
+            >
               <img src="hotel2.jpeg"></img>
               <div className="text">
                 <strong>Pousada mar da luz</strong>
@@ -93,7 +110,8 @@ export default function Favoritos() {
                 className="buttonEnd"
                 onClick={() => {
                   navigate('/description');
-                }}>
+                }}
+              >
                 Ver Acomodação
               </button>
             </div>

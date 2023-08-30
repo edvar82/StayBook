@@ -11,10 +11,16 @@ export default function Description() {
   return (
     <div>
       <Navbar />
-      <div className="container" style={{ marginTop: '40px' }}>
+      <div
+        className="container"
+        style={{ marginTop: '40px' }}
+      >
         <h2>Pousada Mar da Luz</h2>
-        <div className="content2">
-          <div className="imagem">
+        <div className="content">
+          <div
+            className="imagem"
+            style={{ zoom: '0.8' }}
+          >
             <img src="hotel.svg"></img>
             <div className="valores">
               <div className="valueDescription">
@@ -30,33 +36,47 @@ export default function Description() {
             </div>
           </div>
           <div className="descriptionOfHotel">
-            <p>
-              Bem-vindo ao refúgio sereno e encantador que é a Pousada Mar da
-              Luz! Localizada em um cenário deslumbrante à beira-mar, nossa
-              pousada é um verdadeiro oásis de tranquilidade e beleza natural.
-              Com vistas deslumbrantes do oceano que se estendem até onde os
-              olhos podem ver, oferecemos uma experiência única de relaxamento e
-              rejuvenescimento. A Pousada Mar da Luz é um retiro acolhedor que
-              combina conforto moderno com a autenticidade de uma atmosfera
-              beira-mar. Nossos quartos elegantemente decorados são projetados
-              para proporcionar uma estadia aconchegante e memorável. Cada
-              detalhe foi cuidadosamente considerado para garantir que nossos
-              hóspedes se sintam em casa enquanto desfrutam da brisa do mar e
-              dos sons suaves das ondas.
+            <p style={{ textAlign: 'justify', paddingRight: '40px' }}>
+              Bem-vindo ao refúgio sereno e encantador que é a Pousada Mar da Luz!
+              Localizada em um cenário deslumbrante à beira-mar, nossa pousada é um
+              verdadeiro oásis de tranquilidade e beleza natural. Com vistas deslumbrantes
+              do oceano que se estendem até onde os olhos podem ver, oferecemos uma
+              experiência única de relaxamento e rejuvenescimento. A Pousada Mar da Luz é
+              um retiro acolhedor que combina conforto moderno com a autenticidade de uma
+              atmosfera beira-mar. Nossos quartos elegantemente decorados são projetados
+              para proporcionar uma estadia aconchegante e memorável. Cada detalhe foi
+              cuidadosamente considerado para garantir que nossos hóspedes se sintam em
+              casa enquanto desfrutam da brisa do mar e dos sons suaves das ondas.
             </p>
             <div className="star">
-              <FaStar size={40} color="yellow" />
-              <FaStar size={40} color="yellow" />
-              <FaStar size={40} color="yellow" />
-              <FaStar size={40} color="yellow" />
-              <FaStar size={40} color="yellow" />
+              <FaStar
+                size={40}
+                color="yellow"
+              />
+              <FaStar
+                size={40}
+                color="yellow"
+              />
+              <FaStar
+                size={40}
+                color="yellow"
+              />
+              <FaStar
+                size={40}
+                color="yellow"
+              />
+              <FaStar
+                size={40}
+                color="yellow"
+              />
             </div>
             <div className="buttonAcomodacao">
               <button
                 className="touchButton"
                 onClick={() => {
                   navigate('/payment');
-                }}>
+                }}
+              >
                 Reservar
               </button>
             </div>

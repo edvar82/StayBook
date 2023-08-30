@@ -23,22 +23,29 @@ import {
 
 export default function App() {
   return (
-    <div style={{ overflowY: 'scroll', zoom: '0.9' }}>
+    <div style={{ overflowY: 'none', zoom: '0.9' }}>
       <Navbar />
-      <MDBCarousel showControls showIndicators>
+      <MDBCarousel
+        showControls
+        showIndicators
+      >
         <MDBCarouselItem
           className="w-100 d-block active"
           style={{ height: '40rem' }}
           itemId={1}
           src={luxo}
-          alt="...">
+          alt="..."
+        >
           <div className="back-opaco">
             <h5>Sinta-se em casa no nosso hotel de luxo</h5>
             <p>
-              Nossos quartos espaçosos e elegantes oferecem tudo o que você
-              precisa para uma estadia confortável.
+              Nossos quartos espaçosos e elegantes oferecem tudo o que você precisa para
+              uma estadia confortável.
             </p>
-            <img src={logo} style={{ width: '6rem', paddingTop: '1rem' }}></img>
+            <img
+              src={logo}
+              style={{ width: '6rem', paddingTop: '1rem' }}
+            ></img>
           </div>
         </MDBCarouselItem>
         <MDBCarouselItem
@@ -46,14 +53,17 @@ export default function App() {
           style={{ height: '40rem' }}
           itemId={2}
           src={piscina}
-          alt="...">
+          alt="..."
+        >
           <div className="back-opaco">
             <h5>Descanse e relaxe à beira da piscina</h5>
             <p>
-              Nossa piscina de borda infinita oferece uma vista deslumbrante do
-              oceano.
+              Nossa piscina de borda infinita oferece uma vista deslumbrante do oceano.
             </p>
-            <img src={logo} style={{ width: '6rem', paddingTop: '1rem' }}></img>
+            <img
+              src={logo}
+              style={{ width: '6rem', paddingTop: '1rem' }}
+            ></img>
           </div>
         </MDBCarouselItem>
         <MDBCarouselItem
@@ -61,16 +71,23 @@ export default function App() {
           style={{ height: '40rem' }}
           itemId={3}
           src={comidaBoa}
-          alt="...">
+          alt="..."
+        >
           <div className="back-opaco">
             <h5>Experimente a nossa culinária de alta classe</h5>
             <p>Experimente a nossa culinária de alta classe</p>
-            <img src={logo} style={{ width: '6rem', paddingTop: '1rem' }}></img>
+            <img
+              src={logo}
+              style={{ width: '6rem', paddingTop: '1rem' }}
+            ></img>
           </div>
         </MDBCarouselItem>
       </MDBCarousel>
       <Header />
-      <div className="container" style={{ marginTop: '70px' }}>
+      <div
+        className="container"
+        style={{ marginTop: '70px' }}
+      >
         <h1>Ofertas</h1>
         <div
           className="d-flex flex-row"
@@ -78,21 +95,23 @@ export default function App() {
             maxWidth: '1200px',
             marginTop: '15px',
             marginBottom: '70px',
-          }}>
+          }}
+        >
           <MDBCard
             style={{
               borderRadius: '10px',
               boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
               marginRight: '15px',
               width: '100%',
-            }}>
+            }}
+          >
             <MDBRow className="g-0">
               <MDBCol md="8">
                 <MDBCardBody>
                   <MDBCardTitle>Hotéis à beira mar</MDBCardTitle>
                   <MDBCardText>
-                    Se hospede nos hotéis com as melhores vistas que a praia do
-                    Francês pode te ofertar!
+                    Se hospede nos hotéis com as melhores vistas que a praia do Francês
+                    pode te ofertar!
                   </MDBCardText>
                 </MDBCardBody>
               </MDBCol>
@@ -112,15 +131,15 @@ export default function App() {
               borderRadius: '10px',
               boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
               width: '100%',
-            }}>
+            }}
+          >
             <MDBRow className="g-0">
               <MDBCol md="8">
                 <MDBCardBody>
                   <MDBCardTitle>5% CASHBACK!!</MDBCardTitle>
                   <MDBCardText>
-                    Aqui na StayBook você pode fazer sua reserva no hotel dos
-                    seus sonhos e ainda ganhar um cashback aqui na StayBook. Vai
-                    perder essa?!
+                    Aqui na StayBook você pode fazer sua reserva no hotel dos seus sonhos
+                    e ainda ganhar um cashback aqui na StayBook. Vai perder essa?!
                   </MDBCardText>
                 </MDBCardBody>
               </MDBCol>

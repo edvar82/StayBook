@@ -10,9 +10,9 @@ export default function Search() {
       <Navbar />
       <div className="container" style={{ marginTop: '60px' }}>
         <h2>Resultado da Pesquisa</h2>
-        <div className="cards2">
+        <div className="cards2" style={{marginRight: '200px'}}>
           <div className="card2">
-            <div className="image">
+            <div className="image" style={{ zoom: '0.80', margin: 'auto', marginLeft: '20px' }}>
               <img src="hotel2.jpeg"></img>
               <div className="text">
                 <strong>Pousada mar da luz</strong>
@@ -41,7 +41,7 @@ export default function Search() {
             </div>
           </div>
           <div className="card2">
-            <div className="image">
+            <div className="image" style={{ zoom: '0.80', margin: 'auto', marginLeft: '20px' }}>
               <img src="hotel2.jpeg"></img>
               <div className="text">
                 <strong>Pousada mar da luz</strong>
@@ -70,7 +70,7 @@ export default function Search() {
             </div>
           </div>
           <div className="card2">
-            <div className="image">
+            <div className="image"style={{ zoom: '0.80', margin: 'auto', marginLeft: '20px' }} >
               <img src="hotel2.jpeg"></img>
               <div className="text">
                 <strong>Pousada mar da luz</strong>

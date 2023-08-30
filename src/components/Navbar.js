@@ -20,22 +20,40 @@ export default function Navbar() {
   const navigate = useNavigate();
 
   return (
-    <MDBNavbar expand="lg" light bgColor="white">
+    <MDBNavbar
+      expand="lg"
+      light
+      bgColor="white"
+    >
       <MDBContainer fluid>
         <MDBNavbarBrand href="/home">
-          <img style={{ width: '15rem' }} src={logo} alt="logo" />
+          <img
+            style={{ width: '10rem' }}
+            src={logo}
+            alt="logo"
+          />
         </MDBNavbarBrand>
 
         <MDBNavbarToggler
           aria-controls="navbarSupportedContent"
           aria-expanded="false"
           aria-label="Toggle navigation"
-          onClick={() => setShowBasic(!showBasic)}>
-          <MDBIcon icon="bars" fas />
+          onClick={() => setShowBasic(!showBasic)}
+        >
+          <MDBIcon
+            icon="bars"
+            fas
+          />
         </MDBNavbarToggler>
 
-        <MDBCollapse navbar show={showBasic}>
-          <MDBNavbarNav className="ms-auto" fullWidth={false}>
+        <MDBCollapse
+          navbar
+          show={showBasic}
+        >
+          <MDBNavbarNav
+            className="ms-auto"
+            fullWidth={false}
+          >
             <MDBNavbarItem>
               <MDBNavbarLink
                 active
@@ -50,8 +68,13 @@ export default function Navbar() {
                 }}
                 onClick={() => {
                   navigate('/favoritos');
-                }}>
-                <MDBIcon far icon="heart" className="me-2" />
+                }}
+              >
+                <MDBIcon
+                  far
+                  icon="heart"
+                  className="me-2"
+                />
                 Favoritos
               </MDBNavbarLink>
             </MDBNavbarItem>
@@ -66,8 +89,13 @@ export default function Navbar() {
                   fontSize: '22px',
                   lineHeight: '28px',
                   marginRight: '30px',
-                }}>
-                <MDBIcon far icon="user" className="me-2" />
+                }}
+              >
+                <MDBIcon
+                  far
+                  icon="user"
+                  className="me-2"
+                />
                 User
               </MDBNavbarLink>
             </MDBNavbarItem>
@@ -87,11 +115,12 @@ export default function Navbar() {
                     cursor: 'pointer',
                     marginTop: '12px',
                   }}
+                  onClick={() => {
+                    navigate('/search');
+                  }}
                 />
               }
-              onClick={() => {
-                navigate('/search');
-              }}>
+            >
               <input
                 className="form-control"
                 style={{

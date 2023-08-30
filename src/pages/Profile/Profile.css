@@ -2,3 +2,7 @@
   margin-top: 40px;
   color: red;
 }
+
+.scrool{
+  overflow-y: none;
+}

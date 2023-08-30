@@ -28,25 +28,37 @@ import luxo from '../../assets/img/luxo.jpg';
 
 export default function Profile() {
   const [basicModal, setBasicModal] = useState(false);
+  const [nomeTitular, setNomeTitular] = useState('');
+  const [NCartao, setNCartao] = useState('');
+  const [Validade, setValidade] = useState('');
+  const [CVV, setCVV] = useState('');
 
   const toggleShow = () => setBasicModal(!basicModal);
   return (
-    <div style={{ height: '100vh' }}>
+    <div
+      style={{ height: '100vh' }}
+      className="scrool"
+    >
       <Navbar />
       <section
         style={{
           backgroundColor: '#fff',
           height: '100%',
           width: '100%',
-          zoom: '0.9',
-          marginTop: '-100px',
-        }}>
+          zoom: '0.8',
+          marginTop: '-40px',
+        }}
+      >
         <MDBContainer className="h-100 py-5">
           <MDBRow className="h-100 align-items-center">
-            <MDBCol lg="3" className="d-flex justify-content-center">
+            <MDBCol
+              lg="3"
+              className="d-flex justify-content-center"
+            >
               <MDBCard
                 className="mb-4 p-4"
-                style={{ marginTop: '20px', height: '80%' }}>
+                style={{ marginTop: '20px', height: '80%' }}
+              >
                 <MDBCardBody className="text-center">
                   <MDBCardImage
                     src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
@@ -55,14 +67,17 @@ export default function Profile() {
                     style={{ width: '200px', height: '200px' }}
                     fluid
                   />
-                  <MDBCardTitle className="mt-3" style={{ fontSize: '2rem' }}>
+                  <MDBCardTitle
+                    className="mt-3"
+                    style={{ fontSize: '2rem' }}
+                  >
                     Usuário
                   </MDBCardTitle>
                   <MDBCardText
                     className="text-muted mb-4"
-                    style={{ fontSize: '1.2rem' }}>
-                    Amante de tecnologia e colecionador de momentos
-                    inesquecíveis
+                    style={{ fontSize: '1.2rem' }}
+                  >
+                    Amante de tecnologia e colecionador de momentos inesquecíveis
                   </MDBCardText>
                 </MDBCardBody>
               </MDBCard>
@@ -87,9 +102,7 @@ export default function Profile() {
                       <MDBCardText>Email</MDBCardText>
                     </MDBCol>
                     <MDBCol sm="9">
-                      <MDBCardText className="text-muted">
-                        usuario@teste.com
-                      </MDBCardText>
+                      <MDBCardText className="text-muted">usuario@teste.com</MDBCardText>
                     </MDBCol>
                   </MDBRow>
                   <hr />
@@ -98,9 +111,7 @@ export default function Profile() {
                       <MDBCardText>Telefone</MDBCardText>
                     </MDBCol>
                     <MDBCol sm="9">
-                      <MDBCardText className="text-muted">
-                        (011) 3234-5678
-                      </MDBCardText>
+                      <MDBCardText className="text-muted">(011) 3234-5678</MDBCardText>
                     </MDBCol>
                   </MDBRow>
                   <hr />
@@ -109,9 +120,7 @@ export default function Profile() {
                       <MDBCardText>Celular</MDBCardText>
                     </MDBCol>
                     <MDBCol sm="9">
-                      <MDBCardText className="text-muted">
-                        (011) 98765-4321
-                      </MDBCardText>
+                      <MDBCardText className="text-muted">(011) 98765-4321</MDBCardText>
                     </MDBCol>
                   </MDBRow>
                   <hr />
@@ -130,11 +139,15 @@ export default function Profile() {
 
               <MDBRow className="ml-3">
                 <div className="d-flex flex-row">
-                  <MDBCard className="mb-4 p-4 w-75" style={{ width: '10px' }}>
+                  <MDBCard
+                    className="mb-4 p-4 w-75"
+                    style={{ width: '10px' }}
+                  >
                     <MDBCardBody>
                       <MDBCardTitle
                         className="mb-4"
-                        style={{ fontSize: '1.5rem' }}>
+                        style={{ fontSize: '1.5rem' }}
+                      >
                         Métodos de Pagamento
                       </MDBCardTitle>
                       <div className="mt-4 d-flex justify-content-between align-items-center">
@@ -146,9 +159,7 @@ export default function Profile() {
                           />
                           <div className="d-flex flex-column ms-3">
                             <span className="h5 mb-1">Cartão de Crédito</span>
-                            <span className="small text-muted">
-                              1234 XXXX XXXX 2570
-                            </span>
+                            <span className="small text-muted">1234 XXXX XXXX 2570</span>
                           </div>
                         </div>
                       </div>
@@ -161,16 +172,15 @@ export default function Profile() {
                           />
                           <div className="d-flex flex-column ms-3">
                             <span className="h5 mb-1">Cartão de Débito</span>
-                            <span className="small text-muted">
-                              1234 XXXX XXXX 2570
-                            </span>
+                            <span className="small text-muted">1234 XXXX XXXX 2570</span>
                           </div>
                         </div>
                       </div>
                       <div
                         className="ms-auto"
                         onClick={toggleShow}
-                        style={{ paddingTop: '10px', cursor: 'pointer' }}>
+                        style={{ paddingTop: '10px', cursor: 'pointer' }}
+                      >
                         <p className="text-primary">
                           <MDBIcon
                             fas
@@ -185,11 +195,13 @@ export default function Profile() {
 
                   <MDBCard
                     className="mb-4 p-4 w-75"
-                    style={{ width: '10px', marginLeft: '15px' }}>
+                    style={{ width: '10px', marginLeft: '15px' }}
+                  >
                     <MDBCardBody>
                       <MDBCardTitle
                         className="mb-4"
-                        style={{ fontSize: '1.5rem' }}>
+                        style={{ fontSize: '1.5rem' }}
+                      >
                         Minhas Hospedagens
                       </MDBCardTitle>
                       <MDBCard
@@ -197,7 +209,8 @@ export default function Profile() {
                           borderRadius: '10px',
                           boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
                           width: '100%',
-                        }}>
+                        }}
+                      >
                         <MDBRow className="g-0">
                           <MDBCol md="8">
                             <MDBCardBody>
@@ -222,7 +235,8 @@ export default function Profile() {
                           boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
                           width: '100%',
                           marginTop: '15px',
-                        }}>
+                        }}
+                      >
                         <MDBRow className="g-0">
                           <MDBCol md="8">
                             <MDBCardBody>
@@ -249,7 +263,11 @@ export default function Profile() {
           </MDBRow>
         </MDBContainer>
       </section>
-      <MDBModal show={basicModal} setShow={setBasicModal} tabIndex="-1">
+      <MDBModal
+        show={basicModal}
+        setShow={setBasicModal}
+        tabIndex="-1"
+      >
         <MDBModalDialog>
           <MDBModalContent>
             <MDBModalHeader>
@@ -257,7 +275,8 @@ export default function Profile() {
               <MDBBtn
                 className="btn-close"
                 color="none"
-                onClick={toggleShow}></MDBBtn>
+                onClick={toggleShow}
+              ></MDBBtn>
             </MDBModalHeader>
             <MDBModalBody>
               <MDBInput
@@ -265,7 +284,10 @@ export default function Profile() {
                 id="form3"
                 type="text"
                 size="lg"
-                value=""
+                onChange={(e) => {
+                  setNomeTitular(e.target.value);
+                }}
+                value={nomeTitular}
               />
               <MDBRow className="my-4">
                 <MDBCol size="7">
@@ -274,17 +296,23 @@ export default function Profile() {
                     id="form4"
                     type="text"
                     size="lg"
-                    value=""
+                    onChange={(e) => {
+                      setNCartao(e.target.value);
+                    }}
+                    value={NCartao}
                   />
                 </MDBCol>
                 <MDBCol size="3">
                   <MDBInput
                     label="Validade"
                     id="form5"
-                    type="password"
+                    type="text"
                     size="lg"
                     placeholder="MM/YY"
-                    value=""
+                    onChange={(e) => {
+                      setValidade(e.target.value);
+                    }}
+                    value={Validade}
                   />
                 </MDBCol>
                 <MDBCol size="2">
@@ -294,14 +322,21 @@ export default function Profile() {
                     type="password"
                     size="lg"
                     placeholder="CVV"
-                    value=""
+                    onChange={(e) => {
+                      setCVV(e.target.value);
+                    }}
+                    value={CVV}
                   />
                 </MDBCol>
               </MDBRow>
             </MDBModalBody>
             <MDBModalFooter>
-
-              <MDBBtn color="dark" block>Adicionar cartão</MDBBtn>
+              <MDBBtn
+                color="dark"
+                block
+              >
+                Adicionar cartão
+              </MDBBtn>
             </MDBModalFooter>
           </MDBModalContent>
         </MDBModalDialog>
