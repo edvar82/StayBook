@@ -6,9 +6,9 @@ import {
   Navigate,
 } from "react-router-dom";
 
-import Login from "./pages/Login";
-import SignUp from "./pages/Register";
-import Home from "./pages/Home";
+import Login from "./pages/Login/Login";
+import SignUp from "./pages/Register/Register";
+import Home from "./pages/Home/Home";
 import Error from "./pages/Error";
 import Description from "./pages/Description/Description";
 import Favoritos from "./pages/Favoritos/Favoritos";

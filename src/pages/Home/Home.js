@@ -1,15 +1,15 @@
 import React from 'react';
-import Navbar from '../components/Navbar';
+import Navbar from '../../components/Navbar';
 import { MDBCarousel, MDBCarouselItem } from 'mdb-react-ui-kit';
-import logo from '../assets/img/logo copy.png';
-import Header from '../components/Header';
+import logo from '../../assets/img/logo copy.png';
+import Header from '../../components/Header';
 import './Home.css';
 
-import beiramar from '../assets/img/beira-mar.jpg';
-import cashback from '../assets/img/cashback.jpg';
-import comidaBoa from '../assets/img/comida-boa.jpg';
-import luxo from '../assets/img/luxo.jpg';
-import piscina from '../assets/img/piscina.jpg';
+import beiramar from '../../assets/img/beira-mar.jpg';
+import cashback from '../../assets/img/cashback.jpg';
+import comidaBoa from '../../assets/img/comida-boa.jpg';
+import luxo from '../../assets/img/luxo.jpg';
+import piscina from '../../assets/img/piscina.jpg';
 
 import {
   MDBCard,

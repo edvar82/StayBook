@@ -1,6 +1,6 @@
 import React from 'react';
 import { MDBInput, MDBBtn } from 'mdb-react-ui-kit';
-import img from '../assets/img/logo.png';
+import img from '../../assets/img/logo.png';
 import { useNavigate } from 'react-router-dom';
 
 export default function Register() {
