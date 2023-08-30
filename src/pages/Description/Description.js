@@ -1,18 +1,19 @@
-import React from "react";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import Navbar from '../../components/Navbar';
 
-import Navbar from "../../components/Navbar";
+import './description.css';
 
-import "./description.css";
-
-import { FaStar } from "react-icons/fa6";
+import { FaStar } from 'react-icons/fa6';
 
 export default function Description() {
+  const navigate = useNavigate();
   return (
     <div>
       <Navbar />
-      <div className="container">
+      <div className="container" style={{ marginTop: '40px' }}>
         <h2>Pousada Mar da Luz</h2>
-        <div className="content">
+        <div className="content2">
           <div className="imagem">
             <img src="hotel.svg"></img>
             <div className="valores">
@@ -51,7 +52,13 @@ export default function Description() {
               <FaStar size={40} color="yellow" />
             </div>
             <div className="buttonAcomodacao">
-              <button className="touchButton">Ver Acomodação</button>
+              <button
+                className="touchButton"
+                onClick={() => {
+                  navigate('/payment');
+                }}>
+                Reservar
+              </button>
             </div>
           </div>
         </div>

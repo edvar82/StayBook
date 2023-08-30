@@ -1,15 +1,15 @@
 import React from 'react';
 import Navbar from '../../components/Navbar';
 import { useNavigate } from 'react-router-dom';
-import './favoritos.css';
+import './Search.css';
 
-export default function Favoritos() {
+export default function Search() {
   const navigate = useNavigate();
   return (
     <>
       <Navbar />
       <div className="container" style={{ marginTop: '60px' }}>
-        <h2>Favoritos</h2>
+        <h2>Resultado da Pesquisa</h2>
         <div className="cards2">
           <div className="card2">
             <div className="image">

@@ -45,6 +45,7 @@
     border: none;
     padding: 24px;
     cursor: pointer;
+    border-radius: 50%;
   }
   
   .headerSearch {
@@ -130,3 +131,4 @@
   .optionCounterButton:disabled {
     cursor: not-allowed;
   }
+

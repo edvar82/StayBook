@@ -8,12 +8,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Header.css';
 import { DateRange } from 'react-date-range';
 import { useState } from 'react';
-import 'react-date-range/dist/styles.css'; 
-import 'react-date-range/dist/theme/default.css'; 
+import 'react-date-range/dist/styles.css';
+import 'react-date-range/dist/theme/default.css';
 import { format } from 'date-fns';
 import React from 'react';
 import { useRef } from 'react';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Header = ({ type }) => {
   const [destination, setDestination] = useState('');
@@ -59,19 +60,15 @@ const Header = ({ type }) => {
       document.removeEventListener('click', handleClickOutside);
     };
   }, []);
+  const navigate = useNavigate();
 
-  const handleSearch = () => {};
-
+  const handleSearch = () => {
+    navigate('/search');
+  };
   return (
-    <div
-      className="headerSearch"
-      ref={headerRef}
-    >
+    <div className="headerSearch" ref={headerRef}>
       <div className="headerSearchItem">
-        <FontAwesomeIcon
-          icon={faBed}
-          className="headerIcon"
-        />
+        <FontAwesomeIcon icon={faBed} className="headerIcon" />
         <input
           type="text"
           placeholder="Aonde está indo?"
@@ -80,17 +77,13 @@ const Header = ({ type }) => {
         />
       </div>
       <div className="headerSearchItem">
-        <FontAwesomeIcon
-          icon={faCalendarDays}
-          className="headerIcon"
-        />
+        <FontAwesomeIcon icon={faCalendarDays} className="headerIcon" />
         <span
           onClick={() => setOpenDate(!openDate)}
-          className="headerSearchText"
-        >{`${format(date[0].startDate, 'dd/MM/yyyy')} até ${format(
-          date[0].endDate,
-          'dd/MM/yyyy'
-        )}`}</span>
+          className="headerSearchText">{`${format(
+          date[0].startDate,
+          'dd/MM/yyyy',
+        )} até ${format(date[0].endDate, 'dd/MM/yyyy')}`}</span>
         {openDate && (
           <DateRange
             editableDateInputs={true}
@@ -103,14 +96,10 @@ const Header = ({ type }) => {
         )}
       </div>
       <div className="headerSearchItem">
-        <FontAwesomeIcon
-          icon={faPerson}
-          className="headerIcon"
-        />
+        <FontAwesomeIcon icon={faPerson} className="headerIcon" />
         <span
           onClick={() => setOpenOptions(!openOptions)}
-          className="headerSearchText"
-        >{`${options.Adultos} Adultos · ${options.Crianças} Crianças · ${options.Quartos} Quartos`}</span>
+          className="headerSearchText">{`${options.Adultos} Adultos · ${options.Crianças} Crianças · ${options.Quartos} Quartos`}</span>
         {openOptions && (
           <div className="options">
             <div className="optionItem">
@@ -119,15 +108,13 @@ const Header = ({ type }) => {
                 <button
                   disabled={options.Adultos <= 1}
                   className="optionCounterButton"
-                  onClick={() => handleOption('Adultos', 'd')}
-                >
+                  onClick={() => handleOption('Adultos', 'd')}>
                   -
                 </button>
                 <span className="optionCounterNumber">{options.Adultos}</span>
                 <button
                   className="optionCounterButton"
-                  onClick={() => handleOption('Adultos', 'i')}
-                >
+                  onClick={() => handleOption('Adultos', 'i')}>
                   +
                 </button>
               </div>
@@ -139,15 +126,13 @@ const Header = ({ type }) => {
                 <button
                   disabled={options.Crianças <= 0}
                   className="optionCounterButton"
-                  onClick={() => handleOption('Crianças', 'd')}
-                >
+                  onClick={() => handleOption('Crianças', 'd')}>
                   -
                 </button>
                 <span className="optionCounterNumber">{options.Crianças}</span>
                 <button
                   className="optionCounterButton"
-                  onClick={() => handleOption('Crianças', 'i')}
-                >
+                  onClick={() => handleOption('Crianças', 'i')}>
                   +
                 </button>
               </div>
@@ -158,15 +143,13 @@ const Header = ({ type }) => {
                 <button
                   disabled={options.Quartos <= 1}
                   className="optionCounterButton"
-                  onClick={() => handleOption('Quartos', 'd')}
-                >
+                  onClick={() => handleOption('Quartos', 'd')}>
                   -
                 </button>
                 <span className="optionCounterNumber">{options.Quartos}</span>
                 <button
                   className="optionCounterButton"
-                  onClick={() => handleOption('Quartos', 'i')}
-                >
+                  onClick={() => handleOption('Quartos', 'i')}>
                   +
                 </button>
               </div>
@@ -177,9 +160,8 @@ const Header = ({ type }) => {
       <div className="headerSearchItem">
         <button
           className="headerBtn"
-          style={{ borderRadius: '5px' }}
-          onClick={handleSearch}
-        >
+          style={{ borderRadius: '10px 0px 0px 10px' }}
+          onClick={handleSearch}>
           Pesquisar
         </button>
       </div>

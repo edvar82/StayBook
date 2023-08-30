@@ -14,6 +14,7 @@ import Description from "./pages/Description/Description";
 import Favoritos from "./pages/Favoritos/Favoritos";
 import Profile from "./pages/Profile/Profile";
 import Payment from "./pages/Payment/Payment";
+import Search from "./pages/Search/Search";
 
 export default function Rotas() {
   return (
@@ -27,6 +28,7 @@ export default function Rotas() {
         <Route path="/favoritos" element={<Favoritos/>}></Route>
         <Route path='/profile' element={<Profile/>}></Route>
         <Route path='/payment' element={<Payment/>}></Route>
+        <Route path='/search' element={<Search/>}></Route>
       </Routes>
     </Router>
   );
