@@ -12,6 +12,8 @@ import Home from "./pages/Home/Home";
 import Error from "./pages/Error";
 import Description from "./pages/Description/Description";
 import Favoritos from "./pages/Favoritos/Favoritos";
+import Profile from "./pages/Profile/Profile";
+import Payment from "./pages/Payment/Payment";
 
 export default function Rotas() {
   return (
@@ -23,6 +25,8 @@ export default function Rotas() {
         <Route path="*" element={<Error />}></Route>
         <Route path="/description" element={<Description />}></Route>
         <Route path="/favoritos" element={<Favoritos/>}></Route>
+        <Route path='/profile' element={<Profile/>}></Route>
+        <Route path='/payment' element={<Payment/>}></Route>
       </Routes>
     </Router>
   );

@@ -26,7 +26,7 @@ export default function Navbar() {
       bgColor="white"
     >
       <MDBContainer fluid>
-        <MDBNavbarBrand href="#">
+        <MDBNavbarBrand href="/home">
           <img
             style={{ width: '15rem' }}
             src={logo}
@@ -80,7 +80,7 @@ export default function Navbar() {
               <MDBNavbarLink
                 active
                 aria-current="page"
-                href="#"
+                href="/profile"
                 style={{
                   color: 'black',
                   fontWeight: 400,

@@ -2,7 +2,7 @@ import React from "react";
 
 import Navbar from "../../components/Navbar";
 
-import "./style.css";
+import "./description.css";
 
 import { FaStar } from "react-icons/fa6";
 

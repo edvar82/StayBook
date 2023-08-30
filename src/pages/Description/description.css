@@ -1,0 +1,69 @@
+.container {
+    padding-top: 3%;
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    margin-top: 25px;
+    /* border: 0.5px black solid; */
+    height: 60vh;
+    border-radius: 2%;
+    display: flex;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.valores {
+    display: flex;
+    margin-top: 20px;
+}
+
+.imagem {
+    margin-top: 4%;
+    margin-left: 5%;
+}
+
+.imagem > img {
+    width: 300px;
+    height: 300px;
+}
+
+.price > h6 {
+    font-weight: 900;
+    margin-left: 120px;
+}
+
+.valueDescription > h6{
+    font-weight: 900;
+}
+
+.descriptionOfHotel {
+    margin-top: 4%;
+    max-width: 900px;
+    margin-left: 100px;
+}
+
+.descriptionOfHotel > p {
+    font-size: 20px;
+}
+
+.buttonAcomodacao {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5%;
+}
+
+.touchButton {
+    background-color: black;
+    color: white;
+    border: none;
+    width: 500px;
+    height: 50px;
+}
+
+.star {
+    display: flex;
+    justify-content: center;
+    margin-top: 1%;
+}

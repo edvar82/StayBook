@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "../../components/Navbar";
-import './style.css'
+import './favoritos.css'
 
 export default function Favoritos(){
     return(
