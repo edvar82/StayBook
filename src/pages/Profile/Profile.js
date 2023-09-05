@@ -45,7 +45,7 @@ export default function Profile() {
           backgroundColor: '#fff',
           height: '100%',
           width: '100%',
-          zoom: '0.8',
+          zoom: '0.9',
           marginTop: '-40px',
         }}
       >

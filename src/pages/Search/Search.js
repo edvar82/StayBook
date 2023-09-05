@@ -3,16 +3,26 @@ import Navbar from '../../components/Navbar';
 import { useNavigate } from 'react-router-dom';
 import './Search.css';
 
+import {MDBIcon} from 'mdb-react-ui-kit';
+
 export default function Search() {
   const navigate = useNavigate();
   return (
     <>
       <Navbar />
-      <div className="container" style={{ marginTop: '60px' }}>
-        <h2>Resultado da Pesquisa</h2>
-        <div className="cards2" style={{marginRight: '200px'}}>
+      <div className="container" style={{marginTop: '60px'}}>
+        <h2 style={{fontSize: '50px'}}>
+          <MDBIcon fa icon="search" className="me-2" style={{fontSize: '40px', transform:'translateY(-4px)'}}/>
+          Resultados da pesquisa
+        </h2>
+        <div
+          className="cards2"
+        >
           <div className="card2">
-            <div className="image" style={{ zoom: '0.80', margin: 'auto', marginLeft: '20px' }}>
+            <div
+              className="image"
+              style={{ margin: 'auto', paddingRight: '20px'}}
+            >
               <img src="hotel2.jpeg"></img>
               <div className="text">
                 <strong>Pousada mar da luz</strong>
@@ -35,13 +45,17 @@ export default function Search() {
                 className="buttonEnd"
                 onClick={() => {
                   navigate('/description');
-                }}>
+                }}
+              >
                 Ver Acomodação
               </button>
             </div>
           </div>
           <div className="card2">
-            <div className="image" style={{ zoom: '0.80', margin: 'auto', marginLeft: '20px' }}>
+            <div
+              className="image"
+              style={{ margin: 'auto', paddingRight: '20px'}}
+            >
               <img src="hotel2.jpeg"></img>
               <div className="text">
                 <strong>Pousada mar da luz</strong>
@@ -64,13 +78,14 @@ export default function Search() {
                 className="buttonEnd"
                 onClick={() => {
                   navigate('/description');
-                }}>
+                }}
+              >
                 Ver Acomodação
               </button>
             </div>
           </div>
           <div className="card2">
-            <div className="image"style={{ zoom: '0.80', margin: 'auto', marginLeft: '20px' }} >
+            <div className="image" style={{ margin: 'auto', paddingRight: '20px'}}>
               <img src="hotel2.jpeg"></img>
               <div className="text">
                 <strong>Pousada mar da luz</strong>
@@ -93,7 +108,8 @@ export default function Search() {
                 className="buttonEnd"
                 onClick={() => {
                   navigate('/description');
-                }}>
+                }}
+              >
                 Ver Acomodação
               </button>
             </div>

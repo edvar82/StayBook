@@ -1,8 +1,9 @@
 import React from 'react';
 import Navbar from '../../components/Navbar';
-import { MDBCarousel, MDBCarouselItem } from 'mdb-react-ui-kit';
+import {MDBCarousel, MDBCarouselItem} from 'mdb-react-ui-kit';
 import logo from '../../assets/img/logo copy.png';
 import Header from '../../components/Header';
+import {useNavigate} from 'react-router-dom';
 import './Home.css';
 
 import beiramar from '../../assets/img/beira-mar.jpg';
@@ -22,72 +23,77 @@ import {
 } from 'mdb-react-ui-kit';
 
 export default function App() {
+  const navigate = useNavigate();
+
   return (
-    <div style={{ overflowY: 'none', zoom: '0.9' }}>
+    <div style={{overflowY: 'none', zoom: '0.9'}}>
       <Navbar />
-      <MDBCarousel
-        showControls
-        showIndicators
-      >
+      <MDBCarousel showControls showIndicators>
         <MDBCarouselItem
           className="w-100 d-block active"
-          style={{ height: '40rem' }}
+          style={{height: '40rem'}}
           itemId={1}
           src={luxo}
           alt="..."
         >
-          <div className="back-opaco">
-            <h5>Sinta-se em casa no nosso hotel de luxo</h5>
+          <div
+            className="back-opaco"
+            onClick={() => {
+              navigate('/description');
+            }}
+            style={{cursor: 'pointer'}}
+          >
+            <h5>Hotel Praça do Francês</h5>
             <p>
-              Nossos quartos espaçosos e elegantes oferecem tudo o que você precisa para
-              uma estadia confortável.
+              Um hotel para você que quer se hospedar a beira da praia e com o maior conforto
             </p>
-            <img
-              src={logo}
-              style={{ width: '6rem', paddingTop: '1rem' }}
-            ></img>
+            <img src={logo} style={{width: '6rem', paddingTop: '1rem'}}></img>
           </div>
         </MDBCarouselItem>
         <MDBCarouselItem
           className="w-100 d-block"
-          style={{ height: '40rem' }}
+          style={{height: '40rem'}}
           itemId={2}
           src={piscina}
           alt="..."
         >
-          <div className="back-opaco">
-            <h5>Descanse e relaxe à beira da piscina</h5>
+          <div
+            className="back-opaco"
+            onClick={() => {
+              navigate('/description');
+            }}
+            style={{cursor: 'pointer'}}
+          >
+            <h5>Descanse e relaxe à beira da piscina no hotel LeBron James</h5>
             <p>
-              Nossa piscina de borda infinita oferece uma vista deslumbrante do oceano.
+              Nossa piscina de borda infinita oferece uma vista deslumbrante do
+              oceano.
             </p>
-            <img
-              src={logo}
-              style={{ width: '6rem', paddingTop: '1rem' }}
-            ></img>
+            <img src={logo} style={{width: '6rem', paddingTop: '1rem'}}></img>
           </div>
         </MDBCarouselItem>
         <MDBCarouselItem
           className="w-100 d-block"
-          style={{ height: '40rem' }}
+          style={{height: '40rem'}}
           itemId={3}
           src={comidaBoa}
           alt="..."
         >
-          <div className="back-opaco">
-            <h5>Experimente a nossa culinária de alta classe</h5>
-            <p>Experimente a nossa culinária de alta classe</p>
-            <img
-              src={logo}
-              style={{ width: '6rem', paddingTop: '1rem' }}
-            ></img>
+          <div
+            className="back-opaco"
+            onClick={() => {
+              navigate('/description');
+            }}
+            style={{cursor: 'pointer'}}
+          >
+            <h5>Experimente a nossa culinária de alta classe no Hotel Vista do Atlantico</h5>
+            <p>Um hotel para você que quer uma culinária de alta qualidade</p>
+            <img src={logo} style={{width: '6rem', paddingTop: '1rem'}}></img>
           </div>
         </MDBCarouselItem>
       </MDBCarousel>
       <Header />
-      <div
-        className="container"
-        style={{ marginTop: '70px' }}
-      >
+      <div className="container" style={{marginTop: '70px'}}>
         <h1>Ofertas</h1>
         <div
           className="d-flex flex-row"
@@ -110,14 +116,14 @@ export default function App() {
                 <MDBCardBody>
                   <MDBCardTitle>Hotéis à beira mar</MDBCardTitle>
                   <MDBCardText>
-                    Se hospede nos hotéis com as melhores vistas que a praia do Francês
-                    pode te ofertar!
+                    Se hospede nos hotéis com as melhores vistas que a praia do
+                    Francês pode te ofertar!
                   </MDBCardText>
                 </MDBCardBody>
               </MDBCol>
               <MDBCol md="4">
                 <MDBCardImage
-                  style={{ borderRadius: '10px' }}
+                  style={{borderRadius: '10px'}}
                   src={beiramar}
                   alt="..."
                   fluid
@@ -138,14 +144,15 @@ export default function App() {
                 <MDBCardBody>
                   <MDBCardTitle>5% CASHBACK!!</MDBCardTitle>
                   <MDBCardText>
-                    Aqui na StayBook você pode fazer sua reserva no hotel dos seus sonhos
-                    e ainda ganhar um cashback aqui na StayBook. Vai perder essa?!
+                    Aqui na StayBook você pode fazer sua reserva no hotel dos
+                    seus sonhos e ainda ganhar um cashback aqui na StayBook. Vai
+                    perder essa?!
                   </MDBCardText>
                 </MDBCardBody>
               </MDBCol>
               <MDBCol md="4">
                 <MDBCardImage
-                  style={{ height: '20rem', borderRadius: '10px' }}
+                  style={{height: '20rem', borderRadius: '10px'}}
                   src={cashback}
                   alt="..."
                   fluid

@@ -1,26 +1,27 @@
 import React from 'react';
 import Navbar from '../../components/Navbar';
-import { useNavigate } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import './favoritos.css';
+
+import {MDBIcon} from 'mdb-react-ui-kit';
 
 export default function Favoritos() {
   const navigate = useNavigate();
   return (
     <>
       <Navbar />
-      <div
-        className="container"
-        style={{ marginTop: '60px' }}
-      >
-        <h2>Favoritos</h2>
+      <div className="container" style={{marginTop: '60px'}}>
+        <h2 style={{fontSize: '50px'}}>
+          <MDBIcon fa icon="heart" className="me-2" style={{fontSize: '40px', transform:'translateY(-4px)'}}/>
+          Seus hotéis favoritos
+        </h2>
         <div
           className="cards2"
-          style={{marginRight: '200px'}}
         >
           <div className="card2">
             <div
               className="image"
-              style={{ zoom: '0.80', margin: 'auto', marginLeft: '20px' }}
+              style={{ margin: 'auto', paddingRight: '20px'}}
             >
               <img src="hotel2.jpeg"></img>
               <div className="text">
@@ -53,7 +54,7 @@ export default function Favoritos() {
           <div className="card2">
             <div
               className="image"
-              style={{ zoom: '0.80', margin: 'auto', marginLeft: '20px' }}
+              style={{ margin: 'auto', paddingRight: '20px'}}
             >
               <img src="hotel2.jpeg"></img>
               <div className="text">
@@ -84,10 +85,7 @@ export default function Favoritos() {
             </div>
           </div>
           <div className="card2">
-            <div
-              className="image"
-              style={{ zoom: '0.80', margin: 'auto', marginLeft: '20px' }}
-            >
+            <div className="image" style={{ margin: 'auto', paddingRight: '20px'}}>
               <img src="hotel2.jpeg"></img>
               <div className="text">
                 <strong>Pousada mar da luz</strong>

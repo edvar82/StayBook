@@ -57,12 +57,13 @@
     background-color: black;
     color: white;
     border: none;
-    width: 500px;
-    height: 50px;
+    width: 600px;
+    height: 60px;
+    border-radius: 10px;
 }
 
 .star {
     display: flex;
     justify-content: center;
-    margin-top: 1%;
+    margin-top: 10%;
 }
