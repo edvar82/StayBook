@@ -15,7 +15,8 @@ export default function Login() {
       senha: senha,
     });
 
-    if (handleSubmit) {
+    if (response) {
+      localStorage.setItem("clienteId", response.data.id);
       navigate("/home");
     }
   }
