@@ -17,6 +17,7 @@ export default function Login() {
 
     if (response) {
       localStorage.setItem("clienteId", response.data.id);
+      localStorage.setItem("clienteNome", response.data.nome);
       navigate("/home");
     }
   }
