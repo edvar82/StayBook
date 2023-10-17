@@ -63,13 +63,45 @@ const Header = ({ type }) => {
   const navigate = useNavigate();
 
   const handleSearch = () => {
+    const searchData = {
+      destination,
+      checkIn: date[0].startDate,
+      checkOut: date[0].endDate,
+      adults: options.Adultos,
+      children: options.Crianças,
+      rooms: options.Quartos,
+    };
+    const diaIn = format(searchData.checkIn, 'dd');
+    const mesIn = format(searchData.checkIn, 'MM');
+    const anoIn = format(searchData.checkIn, 'yyyy');
+
+    const diaOut = format(searchData.checkOut, 'dd');
+    const mesOut = format(searchData.checkOut, 'MM');
+    const anoOut = format(searchData.checkOut, 'yyyy');
+    localStorage.setItem('lugar', searchData.destination);
+    localStorage.setItem('diaIn', diaIn);
+    localStorage.setItem('mesIn', mesIn);
+    localStorage.setItem('anoIn', anoIn);
+    localStorage.setItem('diaOut', diaOut);
+    localStorage.setItem('mesOut', mesOut);
+    localStorage.setItem('anoOut', anoOut);
+    localStorage.setItem('adultos', searchData.adults);
+    localStorage.setItem('children', searchData.children);
+    localStorage.setItem('rooms', searchData.rooms);
     navigate('/search');
   };
   return (
-    <div className="headerSearch" ref={headerRef}>
+    <div
+      className="headerSearch"
+      ref={headerRef}
+    >
       <div className="headerSearchItem">
-        <FontAwesomeIcon icon={faBed} className="headerIcon" />
+        <FontAwesomeIcon
+          icon={faBed}
+          className="headerIcon"
+        />
         <input
+          id="search"
           type="text"
           placeholder="Aonde está indo?"
           className="headerSearchInput"
@@ -77,13 +109,17 @@ const Header = ({ type }) => {
         />
       </div>
       <div className="headerSearchItem">
-        <FontAwesomeIcon icon={faCalendarDays} className="headerIcon" />
+        <FontAwesomeIcon
+          icon={faCalendarDays}
+          className="headerIcon"
+        />
         <span
           onClick={() => setOpenDate(!openDate)}
-          className="headerSearchText">{`${format(
-          date[0].startDate,
-          'dd/MM/yyyy',
-        )} até ${format(date[0].endDate, 'dd/MM/yyyy')}`}</span>
+          className="headerSearchText"
+        >{`${format(date[0].startDate, 'dd/MM/yyyy')} até ${format(
+          date[0].endDate,
+          'dd/MM/yyyy'
+        )}`}</span>
         {openDate && (
           <DateRange
             editableDateInputs={true}
@@ -96,10 +132,14 @@ const Header = ({ type }) => {
         )}
       </div>
       <div className="headerSearchItem">
-        <FontAwesomeIcon icon={faPerson} className="headerIcon" />
+        <FontAwesomeIcon
+          icon={faPerson}
+          className="headerIcon"
+        />
         <span
           onClick={() => setOpenOptions(!openOptions)}
-          className="headerSearchText">{`${options.Adultos} Adultos · ${options.Crianças} Crianças · ${options.Quartos} Quartos`}</span>
+          className="headerSearchText"
+        >{`${options.Adultos} Adultos · ${options.Crianças} Crianças · ${options.Quartos} Quartos`}</span>
         {openOptions && (
           <div className="options">
             <div className="optionItem">
@@ -108,13 +148,15 @@ const Header = ({ type }) => {
                 <button
                   disabled={options.Adultos <= 1}
                   className="optionCounterButton"
-                  onClick={() => handleOption('Adultos', 'd')}>
+                  onClick={() => handleOption('Adultos', 'd')}
+                >
                   -
                 </button>
                 <span className="optionCounterNumber">{options.Adultos}</span>
                 <button
                   className="optionCounterButton"
-                  onClick={() => handleOption('Adultos', 'i')}>
+                  onClick={() => handleOption('Adultos', 'i')}
+                >
                   +
                 </button>
               </div>
@@ -126,13 +168,15 @@ const Header = ({ type }) => {
                 <button
                   disabled={options.Crianças <= 0}
                   className="optionCounterButton"
-                  onClick={() => handleOption('Crianças', 'd')}>
+                  onClick={() => handleOption('Crianças', 'd')}
+                >
                   -
                 </button>
                 <span className="optionCounterNumber">{options.Crianças}</span>
                 <button
                   className="optionCounterButton"
-                  onClick={() => handleOption('Crianças', 'i')}>
+                  onClick={() => handleOption('Crianças', 'i')}
+                >
                   +
                 </button>
               </div>
@@ -143,13 +187,15 @@ const Header = ({ type }) => {
                 <button
                   disabled={options.Quartos <= 1}
                   className="optionCounterButton"
-                  onClick={() => handleOption('Quartos', 'd')}>
+                  onClick={() => handleOption('Quartos', 'd')}
+                >
                   -
                 </button>
                 <span className="optionCounterNumber">{options.Quartos}</span>
                 <button
                   className="optionCounterButton"
-                  onClick={() => handleOption('Quartos', 'i')}>
+                  onClick={() => handleOption('Quartos', 'i')}
+                >
                   +
                 </button>
               </div>
@@ -161,7 +207,8 @@ const Header = ({ type }) => {
         <button
           className="headerBtn"
           style={{ borderRadius: '10px 0px 0px 10px' }}
-          onClick={handleSearch}>
+          onClick={handleSearch}
+        >
           Pesquisar
         </button>
       </div>
