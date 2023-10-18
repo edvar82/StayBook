@@ -140,7 +140,10 @@ export default function Search() {
                       <strong>{val.name}</strong>
                       <span>{val.neighborhood.name}</span>
                     </div>
-                    <div className="values">
+                    <div
+                      className="values"
+                      style={{ margin: "auto", paddingLeft: "40px" }}
+                    >
                       <div className="valueDescricao">
                         {/* <p>Valor da diária:</p>
                         <p>Custo fixo:</p> */}
