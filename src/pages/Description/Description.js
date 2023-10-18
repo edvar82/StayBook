@@ -1,30 +1,89 @@
-import React from 'react';
-import {useNavigate} from 'react-router-dom';
-import Navbar from '../../components/Navbar';
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import Navbar from "../../components/Navbar";
+import Loading from "../../components/Loading/Loanding";
 
-import './description.css';
+import "./description.css";
 
-import {FaStar} from 'react-icons/fa6';
+import axios from "axios";
+
+import { FaStar } from "react-icons/fa6";
 
 export default function Description() {
+  const hotelId = useParams();
+
   const navigate = useNavigate();
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  const [nome, setNome] = useState("");
+  const [valor, setValor] = useState("");
+  const [imagem, setImage] = useState("");
+  const [endereco, setEndereco] = useState("");
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  async function getData() {
+    // console.log();
+    setIsLoading(true);
+    const options = {
+      method: "POST",
+      url: "https://hotels4.p.rapidapi.com/properties/v2/detail",
+      headers: {
+        "content-type": "application/json",
+        "X-RapidAPI-Key": "d3a927dc58msh2a358643581b862p1ddb0djsnd4b86e9e2254",
+        "X-RapidAPI-Host": "hotels4.p.rapidapi.com",
+      },
+      data: {
+        currency: "BRA",
+        eapid: 3,
+        locale: "pt_BR",
+        siteId: 301800003,
+        propertyId: hotelId["hotelId"],
+      },
+    };
+
+    try {
+      const response = await axios.request(options);
+      setNome(response.data.data.propertyInfo.summary.name);
+      setImage(
+        response.data.data.propertyInfo.propertyGallery.images[0].image.url
+      );
+
+      const rua =
+        response.data.data.propertyInfo.summary.location.address.addressLine;
+      const estado =
+        response.data.data.propertyInfo.summary.location.address.province;
+      const cidade =
+        response.data.data.propertyInfo.summary.location.address.city;
+
+      setEndereco(rua + cidade + estado);
+
+      console.log(response.data.data.propertyInfo);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <div>
       <Navbar />
-      <div className="container" style={{marginTop: '40px'}}>
-        <h2>Pousada Mar da Luz</h2>
-        <div className="content" style={{maxHeight: '580px'}}>
-          <div className="imagem" style={{zoom: '0.8'}}>
-            <img src="hotel.svg"></img>
+      <div className="container" style={{ marginTop: "40px" }}>
+        <h2>{nome}</h2>
+        <div className="content" style={{ maxHeight: "580px" }}>
+          <div className="imagem" style={{ zoom: "0.8" }}>
+            <img src={imagem}></img>
             <div className="valores">
               <div className="valueDescription">
-                <h6>Valor da Diária:</h6>
-                <h6>Custo fixo:</h6>
+                {/* <h6>Valor da Diria:</h6>
+                <h6>Custo fixo:</h6> */}
                 <h6>Total:</h6>
               </div>
               <div className="price">
-                <h6>R$529,80</h6>
-                <h6>R$50,00</h6>
+                {/* <h6>R$529,80</h6>
+                <h6>R$50,00</h6> */}
                 <h6>R$579,80</h6>
               </div>
             </div>
@@ -37,26 +96,15 @@ export default function Description() {
             </div>
           </div>
           <div className="descriptionOfHotel">
-            <p style={{textAlign: 'justify', paddingRight: '40px'}}>
-              Bem-vindo ao refúgio sereno e encantador que é a Pousada Mar da
-              Luz! Localizada em um cenário deslumbrante à beira-mar, nossa
-              pousada é um verdadeiro oásis de tranquilidade e beleza natural.
-              Com vistas deslumbrantes do oceano que se estendem até onde os
-              olhos podem ver, oferecemos uma experiência única de relaxamento e
-              rejuvenescimento. A Pousada Mar da Luz é um retiro acolhedor que
-              combina conforto moderno com a autenticidade de uma atmosfera
-              beira-mar. Nossos quartos elegantemente decorados são projetados
-              para proporcionar uma estadia aconchegante e memorável. Cada
-              detalhe foi cuidadosamente considerado para garantir que nossos
-              hóspedes se sintam em casa enquanto desfrutam da brisa do mar e
-              dos sons suaves das ondas.
+            <p style={{ textAlign: "justify", paddingRight: "40px" }}>
+              {endereco}
             </p>
             <div className="buttonAcomodacao pt-5">
               <button
                 className="touchButton"
-                style={{fontSize: "20px"}}
+                style={{ fontSize: "20px" }}
                 onClick={() => {
-                  navigate('/payment');
+                  navigate("/payment");
                 }}
               >
                 Reservar

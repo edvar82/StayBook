@@ -24,11 +24,11 @@ export default function Rotas() {
         <Route path="/login" element={<Login />}></Route>
         <Route path="/home" element={<Home />}></Route>
         <Route path="*" element={<Error />}></Route>
-        <Route path="/description" element={<Description />}></Route>
-        <Route path="/favoritos" element={<Favoritos/>}></Route>
-        <Route path='/profile' element={<Profile/>}></Route>
-        <Route path='/payment' element={<Payment/>}></Route>
-        <Route path='/search' element={<Search/>}></Route>
+        <Route path="/description/:hotelId" element={<Description />}></Route>
+        <Route path="/favoritos" element={<Favoritos />}></Route>
+        <Route path="/profile" element={<Profile />}></Route>
+        <Route path="/payment" element={<Payment />}></Route>
+        <Route path="/search" element={<Search />}></Route>
       </Routes>
     </Router>
   );

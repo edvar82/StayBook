@@ -160,7 +160,7 @@ export default function Search() {
                     <button
                       className="buttonEnd"
                       onClick={() => {
-                        navigate("/description");
+                        navigate(`/description/${val.id}`);
                       }}
                     >
                       Ver Acomodação
