@@ -24,12 +24,12 @@ export default function Navbar() {
     const q = document.getElementById('search').value;
     const dataAtual = new Date();
 
-    const diaIn = dataAtual.getDate();
+    const diaIn = dataAtual.getDate() + 1;
     const mesIn = dataAtual.getMonth() + 1;
     const anoIn = dataAtual.getFullYear();
 
-    const diaOut = dataAtual.getDate();
-    const mesOut = dataAtual.getMonth() + 2;
+    const diaOut = dataAtual.getDate() + 2;
+    const mesOut = dataAtual.getMonth() + 1;
     const anoOut = dataAtual.getFullYear();
     const adultos = 2;
     const children = 0;

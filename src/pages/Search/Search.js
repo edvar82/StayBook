@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../../components/Navbar';
 import { useNavigate } from 'react-router-dom';
+import Loanding from '../../components/Loading/Loanding';
 import './Search.css';
 
 import axios from 'axios';
@@ -11,12 +12,14 @@ export default function Search() {
   const navigate = useNavigate();
 
   const [hotel, setHotel] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     getData();
   }, []);
 
   async function getData() {
+    setIsLoading(true);
     const q = localStorage.getItem('lugar');
     const diaIn = localStorage.getItem('diaIn');
     const mesIn = localStorage.getItem('mesIn');
@@ -41,7 +44,7 @@ export default function Search() {
         siteid,
       },
       headers: {
-        'X-RapidAPI-Key': '2f452bd6edmsh1ae05fc5cb9b667p13e8afjsn1785c2490f98',
+        'X-RapidAPI-Key': '4cc8622f08msh94db7060541be7bp102675jsncfb8d62a6a34',
         'X-RapidAPI-Host': 'hotels4.p.rapidapi.com',
       },
     };
@@ -50,12 +53,13 @@ export default function Search() {
       const response = await axios.request(options);
       const data = response.data;
       const gaiaId = data.sr[0].gaiaId;
+      console.log(gaiaId);
       const options2 = {
         method: 'POST',
         url: 'https://hotels4.p.rapidapi.com/properties/v2/list',
         headers: {
           'content-type': 'application/json',
-          'X-RapidAPI-Key': '2f452bd6edmsh1ae05fc5cb9b667p13e8afjsn1785c2490f98',
+          'X-RapidAPI-Key': '4cc8622f08msh94db7060541be7bp102675jsncfb8d62a6a34',
           'X-RapidAPI-Host': 'hotels4.p.rapidapi.com',
         },
         data: {
@@ -92,7 +96,17 @@ export default function Search() {
       };
       const response2 = await axios.request(options2);
       const data2 = response2.data;
-      console.log(data2);
+      if (data2.errors || response2.errors) {
+        document.getElementById('erro').innerHTML =
+          'Não foi possível encontrar nenhum hotel com essas especificações';
+        ('Clique em voltar e tente novamente');
+      } else {
+        setTimeout(() => {
+          setHotel(data2);
+          console.log(hotel);
+          setIsLoading(false);
+        }, 5000);
+      }
     } catch (error) {
       console.error(error);
     }
@@ -107,15 +121,59 @@ export default function Search() {
       >
         <h2 style={{ fontSize: '50px' }}>
           <MDBIcon
-            fa
-            icon="search"
+            fa="search"
             className="me-2"
             style={{ fontSize: '40px', transform: 'translateY(-4px)' }}
           />
           Resultados da pesquisa
         </h2>
 
-        {hotel.map((val, index) => (
+        {isLoading ? (
+          <Loanding />
+        ) : (
+          // <div className="cards2">
+          //   {hotel.data.body.searchResults.results.map((val, index) => (
+          //     <div className="card2">
+          //       <div
+          //         className="image"
+          //         style={{ margin: 'auto', paddingRight: '20px' }}
+          //       >
+          //         <img src={val.optimizedThumbUrls.srpDesktop} />
+          //         <div className="text">
+          //           <strong>{val.name}</strong>
+          //           <span>{val.address.locality}</span>
+          //         </div>
+          //         <div className="values">
+          //           <div className="valueDescricao">
+          //             <p>Valor da diária:</p>
+          //             <p>Custo fixo:</p>
+          //             <p>Total:</p>
+          //           </div>
+          //           <div className="value">
+          //             <p>R$X,00</p>
+          //             <p>R$X,00</p>
+          //             <p>R$X,80</p>
+          //           </div>
+          //         </div>
+
+          //         <button
+          //           className="buttonEnd"
+          //           onClick={() => {
+          //             navigate('/description');
+          //           }}
+          //         >
+          //           Ver Acomodação
+          //         </button>
+          //       </div>
+          //     </div>
+          //   ))}
+          // </div>
+          <div style={{ fontSize: '20px', marginTop: '40px' }}>
+            <h2 id="erro"></h2>
+          </div>
+        )}
+
+        {/* {hotel.map((val, index) => (
           <div className="cards2">
             <div className="card2">
               <div
@@ -151,7 +209,7 @@ export default function Search() {
               </div>
             </div>
           </div>
-        ))}
+        ))} */}
 
         {/* <div className="card2">
             <div
