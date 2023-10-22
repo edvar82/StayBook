@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import Loading from "../../components/Loading/Loanding";
+import StarRating from "../../components/StarRating";
 
 import "./description.css";
 
@@ -51,6 +52,10 @@ export default function Description() {
       setImage(
         response.data.data.propertyInfo.propertyGallery.images[0].image.url
       );
+      localStorage.setItem("imagem", imagem);
+      localStorage.setItem("nome", nome);
+
+      const valor = response.data.data.propertyInfo
 
       const rua =
         response.data.data.propertyInfo.summary.location.address.addressLine;
@@ -88,11 +93,7 @@ export default function Description() {
               </div>
             </div>
             <div className="star pt-5">
-              <FaStar size={50} color="yellow" />
-              <FaStar size={50} color="yellow" />
-              <FaStar size={50} color="yellow" />
-              <FaStar size={50} color="yellow" />
-              <FaStar size={50} color="yellow" />
+              <StarRating rating={4.8} />
             </div>
           </div>
           <div className="descriptionOfHotel">

@@ -44,8 +44,8 @@ export default function Search() {
         siteid,
       },
       headers: {
-        "X-RapidAPI-Key": "4cc8622f08msh94db7060541be7bp102675jsncfb8d62a6a34",
-        "X-RapidAPI-Host": "hotels4.p.rapidapi.com",
+        'X-RapidAPI-Key': '939919db1bmshef6f81ce1a442d6p16cec8jsna42e092c76ed',
+        'X-RapidAPI-Host': 'hotels4.p.rapidapi.com',
       },
     };
 
@@ -97,6 +97,7 @@ export default function Search() {
       };
       const response2 = await axios.request(options2);
       const data2 = response2.data;
+      console.log('data: ', data2);
       if (data2.errors || response2.errors) {
         document.getElementById("erro").innerHTML =
           "Não foi possível encontrar nenhum hotel com essas especificações";
@@ -109,6 +110,10 @@ export default function Search() {
     } catch (error) {
       console.error(error);
     }
+  }
+
+  const savePrice = (value) => {
+    localStorage.setItem("price", value);
   }
 
   return (
@@ -160,6 +165,7 @@ export default function Search() {
                     <button
                       className="buttonEnd"
                       onClick={() => {
+                        savePrice(val.mapMarker.label);
                         navigate(`/description/${val.id}`);
                       }}
                     >

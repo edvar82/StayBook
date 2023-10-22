@@ -16,6 +16,29 @@ import React from 'react';
 import Navbar from '../../components/Navbar';
 import luxo from '../../assets/img/luxo.jpg';
 
+function calcularDiferencaDias(diaIn, mesIn, anoIn, diaOut, mesOut, anoOut) {
+  const dataIn = new Date(anoIn, mesIn - 1, diaIn);
+  const dataOut = new Date(anoOut, mesOut - 1, diaOut);
+
+  const diferencaEmMilissegundos = dataOut - dataIn;
+
+  const diferencaEmDias = diferencaEmMilissegundos / (1000 * 60 * 60 * 24);
+
+  return diferencaEmDias;
+}
+
+const diaIn = localStorage.getItem("diaIn");
+const mesIn = localStorage.getItem("mesIn");
+const anoIn = localStorage.getItem("anoIn");
+const diaOut = localStorage.getItem("diaOut");
+const mesOut = localStorage.getItem("mesOut");
+const anoOut = localStorage.getItem("anoOut");
+const dias = calcularDiferencaDias(diaIn, mesIn, anoIn, diaOut, mesOut, anoOut);
+// const value = parseFloat(localStorage.getItem("value"));
+const value = 120.45;
+const img = localStorage.getItem("imagem");
+const nome = localStorage.getItem("nome");
+
 function PaymentPage() {
   return (
     <div>
@@ -139,25 +162,25 @@ function PaymentPage() {
           <MDBCol md="4">
             <h5 className="mb-4">Resumo</h5>
             <MDBCard className="text-black">
-              <MDBCardImage src={luxo} position="top" alt="Apple Computer" />
+              <MDBCardImage src={img} position="top" alt="Apple Computer" />
               <MDBCardBody>
                 <div className="text-center">
-                  <MDBCardTitle>Hotel Praia do Gunga</MDBCardTitle>
-                  <p className="text-muted mb-4">De 24/03 até 27/03</p>
+                  <MDBCardTitle>{nome}</MDBCardTitle>
+                  <p className="text-muted mb-4">De {diaIn}/{mesIn}/{anoIn} até {diaOut}/{mesOut}/{anoOut}</p>
                 </div>
                 <div>
                   <div className="d-flex justify-content-between">
                     <span>Preço da diaria</span>
-                    <span>R$ 220,00</span>
+                    <span>R$ {value}</span>
                   </div>
                   <div className="d-flex justify-content-between">
                     <span>Qtd de dias</span>
-                    <span>4</span>
+                    <span>{dias}</span>
                   </div>
                 </div>
                 <div className="d-flex justify-content-between total font-weight-bold mt-4">
                   <span>Total</span>
-                  <span>R$ 880,00</span>
+                  <span>R$ {value * dias}</span>
                 </div>
               </MDBCardBody>
             </MDBCard>
