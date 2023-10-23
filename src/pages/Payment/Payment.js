@@ -55,6 +55,10 @@ export default function PaymentPage() {
   const [metodo, setMetodo] = useState("");
   const [cartao, setCartao] = useState([]);
 
+  const [valor, setValor] = useState();
+  const [nome, setNome] = useState();
+  const [img, setImage] = useState();
+
   const diaIn = localStorage.getItem("diaIn");
   const mesIn = localStorage.getItem("mesIn");
   const anoIn = localStorage.getItem("anoIn");
@@ -71,8 +75,8 @@ export default function PaymentPage() {
   );
   // const value = parseFloat(localStorage.getItem("value"));
   const value = 120.45;
-  const img = localStorage.getItem("imagem");
-  const nome = localStorage.getItem("nome");
+  // const img = localStorage.getItem("imagem");
+  // const nome = localStorage.getItem("nome");
   const dataIn = formatDateTime(diaIn, mesIn, anoIn, "IN");
   const dataOut = formatDateTime(diaOut, mesOut, anoOut, "OUT");
 
@@ -110,6 +114,42 @@ export default function PaymentPage() {
 
   useEffect(() => {
     const clienteId = localStorage.getItem("clienteId");
+    // const hotelId = hotelId["hotelId"];
+    async function getHotelDetails() {
+      const options = {
+        method: "POST",
+        url: "https://hotels4.p.rapidapi.com/properties/v2/detail",
+        headers: {
+          "content-type": "application/json",
+          "X-RapidAPI-Key":
+            "d3a927dc58msh2a358643581b862p1ddb0djsnd4b86e9e2254",
+          "X-RapidAPI-Host": "hotels4.p.rapidapi.com",
+        },
+        data: {
+          currency: "BRA",
+          eapid: 3,
+          locale: "pt_BR",
+          siteId: 301800003,
+          propertyId: hotelId["hotelId"],
+        },
+      };
+
+      try {
+        const response = await axios.request(options);
+        // console.log("response: ", response);
+        setNome(response.data.data.propertyInfo.summary.name);
+        setImage(
+          response.data.data.propertyInfo.propertyGallery.images[0].image.url
+        );
+        const valor = localStorage.getItem("price");
+        setValor(valor);
+
+        console.log(response.data.data.propertyInfo);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    getHotelDetails();
     getCartaoFromCliente(clienteId);
   }, []);
 
@@ -301,7 +341,7 @@ export default function PaymentPage() {
                 <div>
                   <div className="d-flex justify-content-between">
                     <span>Preço da diaria</span>
-                    <span>R$ {value}</span>
+                    <span>{valor}</span>
                   </div>
                   <div className="d-flex justify-content-between">
                     <span>Qtd de dias</span>

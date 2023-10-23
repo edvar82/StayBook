@@ -119,7 +119,7 @@ export default function Description() {
                 className="touchButton"
                 style={{ fontSize: "20px" }}
                 onClick={() => {
-                  navigate(`/payment/${hotelId}`);
+                  navigate(`/payment/${hotelId["hotelId"]}`);
                 }}
               >
                 Reservar
