@@ -21,13 +21,13 @@ export default function Description() {
   const [valor, setValor] = useState("");
   const [imagem, setImage] = useState("");
   const [endereco, setEndereco] = useState("");
+  const [rating, setRating] = useState("");
 
   useEffect(() => {
     getData();
   }, []);
 
   async function getData() {
-    // console.log();
     setIsLoading(true);
     const options = {
       method: "POST",
@@ -48,14 +48,15 @@ export default function Description() {
 
     try {
       const response = await axios.request(options);
+      console.log("response: ", response);
       setNome(response.data.data.propertyInfo.summary.name);
       setImage(
         response.data.data.propertyInfo.propertyGallery.images[0].image.url
       );
       localStorage.setItem("imagem", imagem);
       localStorage.setItem("nome", nome);
+      const valor = localStorage.getItem("price");
 
-      const valor = response.data.data.propertyInfo
 
       const rua =
         response.data.data.propertyInfo.summary.location.address.addressLine;
@@ -63,8 +64,11 @@ export default function Description() {
         response.data.data.propertyInfo.summary.location.address.province;
       const cidade =
         response.data.data.propertyInfo.summary.location.address.city;
+      const rating = response.data.data.propertyInfo.summary.overview.propertyRating.rating;
+      setRating(rating);
 
       setEndereco(rua + cidade + estado);
+      setValor(valor);
 
       console.log(response.data.data.propertyInfo);
     } catch (error) {
@@ -89,16 +93,17 @@ export default function Description() {
               <div className="price">
                 {/* <h6>R$529,80</h6>
                 <h6>R$50,00</h6> */}
-                <h6>R$579,80</h6>
+                <h6>R${valor}</h6>
               </div>
             </div>
             <div className="star pt-5">
-              <StarRating rating={4.8} />
+              <StarRating rating={rating} />
             </div>
           </div>
           <div className="descriptionOfHotel">
+            <p>Descubra a perfeita harmonia entre luxo e conforto no Hotel Excelência. Localizado em destinos deslumbrantes, oferecemos acomodações sofisticadas, uma culinária excepcional, espaços para eventos de classe mundial e um compromisso inabalável com o atendimento personalizado. Seja a negócios ou lazer, nossa equipe dedicada está pronta para tornar a sua estadia memorável. Reserve agora e comece a criar lembranças inesquecíveis no Hotel Excelência.</p>
             <p style={{ textAlign: "justify", paddingRight: "40px" }}>
-              {endereco}
+              Endereço: {endereco}
             </p>
             <div className="buttonAcomodacao pt-5">
               <button

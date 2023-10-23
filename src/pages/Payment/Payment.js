@@ -14,8 +14,7 @@ import {
 import React, { useEffect, useState } from 'react';
 
 import Navbar from '../../components/Navbar';
-
-// const [cartao, setCartao] = useState([]);
+import axios from 'axios';
 
 function calcularDiferencaDias(diaIn, mesIn, anoIn, diaOut, mesOut, anoOut) {
   const dataIn = new Date(anoIn, mesIn - 1, diaIn);
@@ -50,22 +49,15 @@ function formatDateTime(dia, mes, ano, condicao) {
   return data;
 }
 
-// async function getCartaoFromCliente(clienteId) {
-//   const response = await axios.get(
-//     `http://localhost:3001/cartao/${clienteId}`
-//   );
+async function getCartaoFromCliente(clienteId) {
+  const response = await axios.get(
+    `http://localhost:3001/cartao/${clienteId}`
+  );
   
-//     console.log(response.data);
+    console.log(response.data);
 
-//   setCartao(response.data);
-// }
-
-// useEffect(() => {
-//   const clienteId = localStorage.getItem("clienteId");
-//   getCartaoFromCliente(clienteId);
-// }, []);
-
-
+  setCartao(response.data);
+}
 
 const diaIn = localStorage.getItem("diaIn");
 const mesIn = localStorage.getItem("mesIn");
@@ -83,7 +75,7 @@ const dataOut = formatDateTime(diaOut, mesOut, anoOut, 'OUT');
 
 async function payment(){
   try{
-    const response = await axios.post(`http://localhost:3001/cartao/payment`, {
+    const response = await axios.post(`http://localhost:3001/payment`, {
     clientId: localStorage.getItem("clienteId"),
     hotelId: 1, // aqui coloca o id do hotel
     nomeHotel: nome,
@@ -91,7 +83,7 @@ async function payment(){
     checkOut: dataOut,
     numQuartos: 1,
     valor: value * dias,
-    metodoPagamento: "Cartão de Crédito",
+    metodoPagamento: metodo,
     idCartao: 1, // aqui coloca o id do cartão
   });
   if(response.data){
@@ -104,6 +96,14 @@ async function payment(){
 }
 
 function PaymentPage() {
+  const [metodo, setMetodo] = useState('');
+  const [cartao, setCartao] = useState([]);
+
+  useEffect(() => {
+    const clienteId = localStorage.getItem("clienteId");
+    getCartaoFromCliente(clienteId);
+  }, []);
+
   return (
     <div>
       <Navbar />
@@ -121,7 +121,7 @@ function PaymentPage() {
                   </div>
                 </div>
                 <div className='pt-3'>
-                {/* {cartao ? (
+                {cartao ? (
                   cartao.map((cartao) => (
                     <div className="d-flex flex-row pb-3">
                     <div className="rounded border border-black border-2 d-flex w-100 p-3 align-items-center">
@@ -145,13 +145,14 @@ function PaymentPage() {
                   ))
                 ) : (
                   <div>Nenhum cartão</div>
-                )} */}
+                )}
                 </div>
                 <div className="pt-3">
                   <div className="d-flex flex-row pb-3">
                     <div className="rounded border border-black border-2 d-flex w-100 p-3 align-items-center">
                       <div className="d-flex align-items-center pe-3">
-                        <MDBRadio name="radioDebit" id="radioDebit" />
+                        <MDBRadio name="radioDebit" id="radioDebit" checked={metodo === "Cartão"}
+                        onChange={() => setMetodo("Cartão")}/>
                       </div>
                       <MDBIcon
                         fab
@@ -172,7 +173,9 @@ function PaymentPage() {
                   <div className="d-flex flex-row pb-3">
                     <div className="rounded border border-black border-2 d-flex w-100 p-3 align-items-center">
                       <div className="d-flex align-items-center pe-3">
-                        <MDBRadio name="radioDebit" id="radioDebit" />
+                        <MDBRadio name="radioDebit" id="radioDebit"
+                        checked={metodo === "Cartão"}
+                        onChange={() => setMetodo("Cartão")} />
                       </div>
                       <MDBIcon
                         fab
@@ -200,7 +203,9 @@ function PaymentPage() {
                   <div className="d-flex flex-row pb-3">
                     <div className="rounded border border-black border-2 d-flex w-100 p-3 align-items-center">
                       <div className="d-flex align-items-center pe-3">
-                        <MDBRadio name="radioDebit" id="radioDebit" />
+                        <MDBRadio name="radioDebit" id="radioDebit"
+                        checked={metodo === "Boleto"}
+                        onChange={() => setMetodo("Boleto")} />
                       </div>
                       <MDBIcon
                         fa
@@ -228,7 +233,9 @@ function PaymentPage() {
                   <div className="d-flex flex-row pb-3">
                     <div className="rounded border border-black border-2 d-flex w-100 p-3 align-items-center">
                       <div className="d-flex align-items-center pe-3">
-                        <MDBRadio name="radioDebit" id="radioDebit" />
+                        <MDBRadio name="radioDebit" id="radioDebit"
+                        checked={metodo === "PIX"}
+                        onChange={() => setMetodo("PIX")} />
                       </div>
                       <div className="d-flex flex-column">
                         <p className="mb-1  text-black">
@@ -243,7 +250,7 @@ function PaymentPage() {
                   <a href="#!" className="text-muted">
                     Voltar
                   </a>
-                  <MDBBtn size="lg" style={{ backgroundColor: 'black' }} onClick="">
+                  <MDBBtn size="lg" style={{ backgroundColor: 'black' }} onClick="payment">
                     Usar esta forma de pagamento
                   </MDBBtn>
                 </div>
