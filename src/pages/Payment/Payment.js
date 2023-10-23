@@ -49,58 +49,65 @@ function formatDateTime(dia, mes, ano, condicao) {
   return data;
 }
 
-async function getCartaoFromCliente(clienteId) {
-  const response = await axios.get(
-    `http://localhost:3001/cartao/${clienteId}`
-  );
-  
-    console.log(response.data);
-
-  setCartao(response.data);
-}
-
-const diaIn = localStorage.getItem("diaIn");
-const mesIn = localStorage.getItem("mesIn");
-const anoIn = localStorage.getItem("anoIn");
-const diaOut = localStorage.getItem("diaOut");
-const mesOut = localStorage.getItem("mesOut");
-const anoOut = localStorage.getItem("anoOut");
-const dias = calcularDiferencaDias(diaIn, mesIn, anoIn, diaOut, mesOut, anoOut);
-// const value = parseFloat(localStorage.getItem("value"));
-const value = 120.45;
-const img = localStorage.getItem("imagem");
-const nome = localStorage.getItem("nome");
-const dataIn = formatDateTime(diaIn, mesIn, anoIn, 'IN');
-const dataOut = formatDateTime(diaOut, mesOut, anoOut, 'OUT');
-
-async function payment(){
-  try{
-    const response = await axios.post(`http://localhost:3001/payment`, {
-    clientId: localStorage.getItem("clienteId"),
-    hotelId: 1, // aqui coloca o id do hotel
-    nomeHotel: nome,
-    checkIn: dataIn,
-    checkOut: dataOut,
-    numQuartos: 1,
-    valor: value * dias,
-    metodoPagamento: metodo,
-    idCartao: 1, // aqui coloca o id do cartão
-  });
-  if(response.data){
-    alert("Pagamento realizado com sucesso");
-    window.location.href = "/home";
-  }
-  } catch {
-    console.log("Erro ao realizar pagamento");
-  }
-}
-
 function PaymentPage() {
   const [metodo, setMetodo] = useState('');
   const [cartao, setCartao] = useState([]);
 
+  const diaIn = localStorage.getItem('diaIn');
+  const mesIn = localStorage.getItem('mesIn');
+  const anoIn = localStorage.getItem('anoIn');
+  const diaOut = localStorage.getItem('diaOut');
+  const mesOut = localStorage.getItem('mesOut');
+  const anoOut = localStorage.getItem('anoOut');
+  const dias = calcularDiferencaDias(
+    diaIn,
+    mesIn,
+    anoIn,
+    diaOut,
+    mesOut,
+    anoOut,
+  );
+  // const value = parseFloat(localStorage.getItem("value"));
+  const value = 120.45;
+  const img = localStorage.getItem('imagem');
+  const nome = localStorage.getItem('nome');
+  const dataIn = formatDateTime(diaIn, mesIn, anoIn, 'IN');
+  const dataOut = formatDateTime(diaOut, mesOut, anoOut, 'OUT');
+
+  async function getCartaoFromCliente(clienteId) {
+    const response = await axios.get(
+      `http://localhost:3001/cartao/$4735e5ed-6d18-4259-8908-5187cfb44834`,
+    );
+
+    console.log(response.data);
+
+    setCartao(response.data);
+  }
+
+  async function payment() {
+    try {
+      const response = await axios.post(`http://localhost:3001/payment`, {
+        clientId: localStorage.getItem('clienteId'),
+        hotelId: '3312cacb-7088-43d7-b32a-766f08f33f65', // aqui coloca o id do hotel
+        nomeHotel: nome,
+        checkIn: dataIn,
+        checkOut: dataOut,
+        numQuartos: 1,
+        valor: value * dias,
+        metodoPagamento: metodo,
+        idCartao: 1, // aqui coloca o id do cartão
+      });
+      if (response.data) {
+        alert('Pagamento realizado com sucesso');
+        window.location.href = '/home';
+      }
+    } catch {
+      console.log('Erro ao realizar pagamento');
+    }
+  }
+
   useEffect(() => {
-    const clienteId = localStorage.getItem("clienteId");
+    const clienteId = localStorage.getItem('clienteId');
     getCartaoFromCliente(clienteId);
   }, []);
 
@@ -120,39 +127,43 @@ function PaymentPage() {
                     </p>
                   </div>
                 </div>
-                <div className='pt-3'>
-                {cartao ? (
-                  cartao.map((cartao) => (
-                    <div className="d-flex flex-row pb-3">
-                    <div className="rounded border border-black border-2 d-flex w-100 p-3 align-items-center">
-                      <div className="d-flex align-items-center pe-3">
-                        <MDBRadio name="radioDebit" id="radioDebit" />
+                <div className="pt-3">
+                  {cartao ? (
+                    cartao.map((cartao) => (
+                      <div className="d-flex flex-row pb-3">
+                        <div className="rounded border border-black border-2 d-flex w-100 p-3 align-items-center">
+                          <div className="d-flex align-items-center pe-3">
+                            <MDBRadio name="radioDebit" id="radioDebit" />
+                          </div>
+                          <MDBIcon
+                            fab
+                            icon="cc-mastercard"
+                            size="3x"
+                            className="text-black pe-3"
+                          />
+                          <div className="d-flex flex-column">
+                            <p className="mb-1 small text-black">
+                              Cartão de Débito
+                            </p>
+                            <h6 className="mb-0 text-black">{cartao.numero}</h6>
+                          </div>
+                        </div>
                       </div>
-                      <MDBIcon
-                        fab
-                        icon="cc-mastercard"
-                        size="3x"
-                        className="text-black pe-3"
-                      />
-                      <div className="d-flex flex-column">
-                        <p className="mb-1 small text-black">
-                          Cartão de Débito
-                        </p>
-                        <h6 className="mb-0 text-black">{cartao.numero}</h6>
-                      </div>
-                    </div>
-                  </div>
-                  ))
-                ) : (
-                  <div>Nenhum cartão</div>
-                )}
+                    ))
+                  ) : (
+                    <div>Nenhum cartão</div>
+                  )}
                 </div>
                 <div className="pt-3">
                   <div className="d-flex flex-row pb-3">
                     <div className="rounded border border-black border-2 d-flex w-100 p-3 align-items-center">
                       <div className="d-flex align-items-center pe-3">
-                        <MDBRadio name="radioDebit" id="radioDebit" checked={metodo === "Cartão"}
-                        onChange={() => setMetodo("Cartão")}/>
+                        <MDBRadio
+                          name="radioDebit"
+                          id="radioDebit"
+                          checked={metodo === 'Cartão'}
+                          onChange={() => setMetodo('Cartão')}
+                        />
                       </div>
                       <MDBIcon
                         fab
@@ -173,9 +184,12 @@ function PaymentPage() {
                   <div className="d-flex flex-row pb-3">
                     <div className="rounded border border-black border-2 d-flex w-100 p-3 align-items-center">
                       <div className="d-flex align-items-center pe-3">
-                        <MDBRadio name="radioDebit" id="radioDebit"
-                        checked={metodo === "Cartão"}
-                        onChange={() => setMetodo("Cartão")} />
+                        <MDBRadio
+                          name="radioDebit"
+                          id="radioDebit"
+                          checked={metodo === 'Cartão'}
+                          onChange={() => setMetodo('Cartão')}
+                        />
                       </div>
                       <MDBIcon
                         fab
@@ -203,9 +217,12 @@ function PaymentPage() {
                   <div className="d-flex flex-row pb-3">
                     <div className="rounded border border-black border-2 d-flex w-100 p-3 align-items-center">
                       <div className="d-flex align-items-center pe-3">
-                        <MDBRadio name="radioDebit" id="radioDebit"
-                        checked={metodo === "Boleto"}
-                        onChange={() => setMetodo("Boleto")} />
+                        <MDBRadio
+                          name="radioDebit"
+                          id="radioDebit"
+                          checked={metodo === 'Boleto'}
+                          onChange={() => setMetodo('Boleto')}
+                        />
                       </div>
                       <MDBIcon
                         fa
@@ -233,9 +250,12 @@ function PaymentPage() {
                   <div className="d-flex flex-row pb-3">
                     <div className="rounded border border-black border-2 d-flex w-100 p-3 align-items-center">
                       <div className="d-flex align-items-center pe-3">
-                        <MDBRadio name="radioDebit" id="radioDebit"
-                        checked={metodo === "PIX"}
-                        onChange={() => setMetodo("PIX")} />
+                        <MDBRadio
+                          name="radioDebit"
+                          id="radioDebit"
+                          checked={metodo === 'PIX'}
+                          onChange={() => setMetodo('PIX')}
+                        />
                       </div>
                       <div className="d-flex flex-column">
                         <p className="mb-1  text-black">
@@ -250,7 +270,11 @@ function PaymentPage() {
                   <a href="#!" className="text-muted">
                     Voltar
                   </a>
-                  <MDBBtn size="lg" style={{ backgroundColor: 'black' }} onClick="payment">
+                  <MDBBtn
+                    size="lg"
+                    style={{ backgroundColor: 'black' }}
+                    onClick="payment"
+                  >
                     Usar esta forma de pagamento
                   </MDBBtn>
                 </div>
@@ -260,11 +284,17 @@ function PaymentPage() {
           <MDBCol md="4">
             <h5 className="mb-4">Resumo</h5>
             <MDBCard className="text-black">
-              <MDBCardImage src={img} position="top" alt={nome ? nome : "Nome do hotel"} />
+              <MDBCardImage
+                src={img}
+                position="top"
+                alt={nome ? nome : 'Nome do hotel'}
+              />
               <MDBCardBody>
                 <div className="text-center">
                   <MDBCardTitle>{nome}</MDBCardTitle>
-                  <p className="text-muted mb-4">De {diaIn}/{mesIn}/{anoIn} até {diaOut}/{mesOut}/{anoOut}</p>
+                  <p className="text-muted mb-4">
+                    De {diaIn}/{mesIn}/{anoIn} até {diaOut}/{mesOut}/{anoOut}
+                  </p>
                 </div>
                 <div>
                   <div className="d-flex justify-content-between">
