@@ -10,11 +10,11 @@ import {
   MDBRadio,
   MDBInput,
   MDBBtn,
-} from 'mdb-react-ui-kit';
-import React, { useEffect, useState } from 'react';
-
-import Navbar from '../../components/Navbar';
-import axios from 'axios';
+} from "mdb-react-ui-kit";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import Navbar from "../../components/Navbar";
+import axios from "axios";
 
 function calcularDiferencaDias(diaIn, mesIn, anoIn, diaOut, mesOut, anoOut) {
   const dataIn = new Date(anoIn, mesIn - 1, diaIn);
@@ -36,10 +36,10 @@ function formatDateTime(dia, mes, ano, condicao) {
   // Crie um objeto de data
   const data = new Date(ano, mes - 1, dia);
 
-  if (condicao === 'IN') {
+  if (condicao === "IN") {
     // Se a condição for 'IN', defina a hora para 14:00 (2:00 PM)
     data.setHours(14, 0, 0, 0);
-  } else if (condicao === 'OUT') {
+  } else if (condicao === "OUT") {
     // Se a condição for 'OUT', defina a hora para 12:00 (12:00 PM)
     data.setHours(12, 0, 0, 0);
   } else {
@@ -49,34 +49,36 @@ function formatDateTime(dia, mes, ano, condicao) {
   return data;
 }
 
-function PaymentPage() {
-  const [metodo, setMetodo] = useState('');
+export default function PaymentPage() {
+  const hotelId = useParams();
+
+  const [metodo, setMetodo] = useState("");
   const [cartao, setCartao] = useState([]);
 
-  const diaIn = localStorage.getItem('diaIn');
-  const mesIn = localStorage.getItem('mesIn');
-  const anoIn = localStorage.getItem('anoIn');
-  const diaOut = localStorage.getItem('diaOut');
-  const mesOut = localStorage.getItem('mesOut');
-  const anoOut = localStorage.getItem('anoOut');
+  const diaIn = localStorage.getItem("diaIn");
+  const mesIn = localStorage.getItem("mesIn");
+  const anoIn = localStorage.getItem("anoIn");
+  const diaOut = localStorage.getItem("diaOut");
+  const mesOut = localStorage.getItem("mesOut");
+  const anoOut = localStorage.getItem("anoOut");
   const dias = calcularDiferencaDias(
     diaIn,
     mesIn,
     anoIn,
     diaOut,
     mesOut,
-    anoOut,
+    anoOut
   );
   // const value = parseFloat(localStorage.getItem("value"));
   const value = 120.45;
-  const img = localStorage.getItem('imagem');
-  const nome = localStorage.getItem('nome');
-  const dataIn = formatDateTime(diaIn, mesIn, anoIn, 'IN');
-  const dataOut = formatDateTime(diaOut, mesOut, anoOut, 'OUT');
+  const img = localStorage.getItem("imagem");
+  const nome = localStorage.getItem("nome");
+  const dataIn = formatDateTime(diaIn, mesIn, anoIn, "IN");
+  const dataOut = formatDateTime(diaOut, mesOut, anoOut, "OUT");
 
   async function getCartaoFromCliente(clienteId) {
     const response = await axios.get(
-      `http://localhost:3001/cartao/$4735e5ed-6d18-4259-8908-5187cfb44834`,
+      `http://localhost:3001/cartao/${clienteId}`
     );
 
     console.log(response.data);
@@ -87,8 +89,8 @@ function PaymentPage() {
   async function payment() {
     try {
       const response = await axios.post(`http://localhost:3001/payment`, {
-        clientId: localStorage.getItem('clienteId'),
-        hotelId: '3312cacb-7088-43d7-b32a-766f08f33f65', // aqui coloca o id do hotel
+        clientId: localStorage.getItem("clienteId"),
+        hotelId: "3312cacb-7088-43d7-b32a-766f08f33f65", // aqui coloca o id do hotel
         nomeHotel: nome,
         checkIn: dataIn,
         checkOut: dataOut,
@@ -98,16 +100,16 @@ function PaymentPage() {
         idCartao: 1, // aqui coloca o id do cartão
       });
       if (response.data) {
-        alert('Pagamento realizado com sucesso');
-        window.location.href = '/home';
+        alert("Pagamento realizado com sucesso");
+        window.location.href = "/home";
       }
     } catch {
-      console.log('Erro ao realizar pagamento');
+      console.log("Erro ao realizar pagamento");
     }
   }
 
   useEffect(() => {
-    const clienteId = localStorage.getItem('clienteId');
+    const clienteId = localStorage.getItem("clienteId");
     getCartaoFromCliente(clienteId);
   }, []);
 
@@ -161,8 +163,8 @@ function PaymentPage() {
                         <MDBRadio
                           name="radioDebit"
                           id="radioDebit"
-                          checked={metodo === 'Cartão'}
-                          onChange={() => setMetodo('Cartão')}
+                          checked={metodo === "Cartão"}
+                          onChange={() => setMetodo("Cartão")}
                         />
                       </div>
                       <MDBIcon
@@ -187,8 +189,8 @@ function PaymentPage() {
                         <MDBRadio
                           name="radioDebit"
                           id="radioDebit"
-                          checked={metodo === 'Cartão'}
-                          onChange={() => setMetodo('Cartão')}
+                          checked={metodo === "Cartão"}
+                          onChange={() => setMetodo("Cartão")}
                         />
                       </div>
                       <MDBIcon
@@ -220,8 +222,8 @@ function PaymentPage() {
                         <MDBRadio
                           name="radioDebit"
                           id="radioDebit"
-                          checked={metodo === 'Boleto'}
-                          onChange={() => setMetodo('Boleto')}
+                          checked={metodo === "Boleto"}
+                          onChange={() => setMetodo("Boleto")}
                         />
                       </div>
                       <MDBIcon
@@ -253,8 +255,8 @@ function PaymentPage() {
                         <MDBRadio
                           name="radioDebit"
                           id="radioDebit"
-                          checked={metodo === 'PIX'}
-                          onChange={() => setMetodo('PIX')}
+                          checked={metodo === "PIX"}
+                          onChange={() => setMetodo("PIX")}
                         />
                       </div>
                       <div className="d-flex flex-column">
@@ -272,7 +274,7 @@ function PaymentPage() {
                   </a>
                   <MDBBtn
                     size="lg"
-                    style={{ backgroundColor: 'black' }}
+                    style={{ backgroundColor: "black" }}
                     onClick="payment"
                   >
                     Usar esta forma de pagamento
@@ -287,7 +289,7 @@ function PaymentPage() {
               <MDBCardImage
                 src={img}
                 position="top"
-                alt={nome ? nome : 'Nome do hotel'}
+                alt={nome ? nome : "Nome do hotel"}
               />
               <MDBCardBody>
                 <div className="text-center">
@@ -318,5 +320,3 @@ function PaymentPage() {
     </div>
   );
 }
-
-export default PaymentPage;

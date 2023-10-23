@@ -57,14 +57,14 @@ export default function Description() {
       localStorage.setItem("nome", nome);
       const valor = localStorage.getItem("price");
 
-
       const rua =
         response.data.data.propertyInfo.summary.location.address.addressLine;
       const estado =
         response.data.data.propertyInfo.summary.location.address.province;
       const cidade =
         response.data.data.propertyInfo.summary.location.address.city;
-      const rating = response.data.data.propertyInfo.summary.overview.propertyRating.rating;
+      const rating =
+        response.data.data.propertyInfo.summary.overview.propertyRating.rating;
       setRating(rating);
 
       setEndereco(rua + cidade + estado);
@@ -93,7 +93,7 @@ export default function Description() {
               <div className="price">
                 {/* <h6>R$529,80</h6>
                 <h6>R$50,00</h6> */}
-                <h6>R${valor}</h6>
+                <h6>{valor}</h6>
               </div>
             </div>
             <div className="star pt-5">
@@ -101,7 +101,16 @@ export default function Description() {
             </div>
           </div>
           <div className="descriptionOfHotel">
-            <p>Descubra a perfeita harmonia entre luxo e conforto no Hotel Excelência. Localizado em destinos deslumbrantes, oferecemos acomodações sofisticadas, uma culinária excepcional, espaços para eventos de classe mundial e um compromisso inabalável com o atendimento personalizado. Seja a negócios ou lazer, nossa equipe dedicada está pronta para tornar a sua estadia memorável. Reserve agora e comece a criar lembranças inesquecíveis no Hotel Excelência.</p>
+            <p>
+              Descubra a perfeita harmonia entre luxo e conforto no Hotel
+              Excelência. Localizado em destinos deslumbrantes, oferecemos
+              acomodações sofisticadas, uma culinária excepcional, espaços para
+              eventos de classe mundial e um compromisso inabalável com o
+              atendimento personalizado. Seja a negócios ou lazer, nossa equipe
+              dedicada está pronta para tornar a sua estadia memorável. Reserve
+              agora e comece a criar lembranças inesquecíveis no Hotel
+              Excelência.
+            </p>
             <p style={{ textAlign: "justify", paddingRight: "40px" }}>
               Endereço: {endereco}
             </p>
@@ -110,7 +119,7 @@ export default function Description() {
                 className="touchButton"
                 style={{ fontSize: "20px" }}
                 onClick={() => {
-                  navigate("/payment");
+                  navigate(`/payment/${hotelId}`);
                 }}
               >
                 Reservar

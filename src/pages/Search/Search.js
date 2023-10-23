@@ -44,8 +44,8 @@ export default function Search() {
         siteid,
       },
       headers: {
-        'X-RapidAPI-Key': '939919db1bmshef6f81ce1a442d6p16cec8jsna42e092c76ed',
-        'X-RapidAPI-Host': 'hotels4.p.rapidapi.com',
+        "X-RapidAPI-Key": "939919db1bmshef6f81ce1a442d6p16cec8jsna42e092c76ed",
+        "X-RapidAPI-Host": "hotels4.p.rapidapi.com",
       },
     };
 
@@ -60,7 +60,7 @@ export default function Search() {
         headers: {
           "content-type": "application/json",
           "X-RapidAPI-Key":
-            "4cc8622f08msh94db7060541be7bp102675jsncfb8d62a6a34",
+            "d3a927dc58msh2a358643581b862p1ddb0djsnd4b86e9e2254",
           "X-RapidAPI-Host": "hotels4.p.rapidapi.com",
         },
         data: {
@@ -97,7 +97,7 @@ export default function Search() {
       };
       const response2 = await axios.request(options2);
       const data2 = response2.data;
-      console.log('data: ', data2);
+      console.log("data: ", data2);
       if (data2.errors || response2.errors) {
         document.getElementById("erro").innerHTML =
           "Não foi possível encontrar nenhum hotel com essas especificações";
@@ -114,7 +114,7 @@ export default function Search() {
 
   const savePrice = (value) => {
     localStorage.setItem("price", value);
-  }
+  };
 
   return (
     <>
@@ -143,7 +143,7 @@ export default function Search() {
                     <img src={val.propertyImage.image.url} alt={val.name} />
                     <div className="text">
                       <strong>{val.name}</strong>
-                      <span>{val.neighborhood.name}</span>
+                      {val.neighborhood && <span>{val.neighborhood.name}</span>}
                     </div>
                     <div
                       className="values"
@@ -151,7 +151,7 @@ export default function Search() {
                     >
                       <div className="valueDescricao">
                         {/* <p>Valor da diária:</p>
-                        <p>Custo fixo:</p> */}
+            <p>Custo fixo:</p> */}
                         <p>Total:</p>
                       </div>
                       <div className="value">
