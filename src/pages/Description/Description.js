@@ -27,6 +27,16 @@ export default function Description() {
     getData();
   }, []);
 
+  async function addFavoritos() {
+    const response = await axios.post("http://localhost:3001/favoritos", {
+      clienteId: localStorage.getItem("clienteId"),
+      hotelId: hotelId["hotelId"],
+    });
+    if (response.data) {
+      alert("Adicionado com sucesso");
+    }
+  }
+
   async function getData() {
     setIsLoading(true);
     const options = {
@@ -99,6 +109,12 @@ export default function Description() {
             <div className="star pt-5">
               <StarRating rating={rating} />
             </div>
+            <button
+              className="addToFavoritesButton"
+              onClick={() => addFavoritos()}
+            >
+              Adicionar aos favoritos
+            </button>
           </div>
           <div className="descriptionOfHotel">
             <p>

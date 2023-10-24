@@ -67,3 +67,26 @@
     justify-content: center;
     margin-top: 10%;
 }
+
+
+.addToFavoritesButton {
+    margin-top: 40px;
+    margin-left: 45px;
+    background-color: #ff6b6b; /* Cor de fundo do botão */
+    color: #fff; /* Cor do texto no botão */
+    border: none; /* Remova a borda do botão */
+    padding: 10px 20px; /* Espaçamento interno do botão */
+    border-radius: 5px; /* Borda arredondada */
+    cursor: pointer; /* Cursor de mão ao pairar sobre o botão */
+    font-size: 16px; /* Tamanho da fonte */
+    transition: background-color 0.3s ease; /* Transição suave na cor de fundo */
+  
+    /* Estilos ao pairar sobre o botão */
+    &:hover {
+      background-color: #e74c3c; /* Cor de fundo alterada ao pairar */
+    }
+  }
+  
+  .addToFavoritesButton:focus {
+    outline: none; /* Remove a borda de foco ao clicar no botão */
+  }
