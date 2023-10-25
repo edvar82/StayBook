@@ -11,10 +11,9 @@ export default function Login() {
 
   async function handleSubmit() {
     const response = await axios.post("http://localhost:3001/cliente/login", {
-      email: email,
-      senha: senha,
+      email,
+      senha,
     });
-
     if (response) {
       localStorage.setItem("clienteId", response.data.id);
       localStorage.setItem("clienteNome", response.data.nome);
@@ -46,6 +45,8 @@ export default function Login() {
             style={{ width: "100%", height: "42px" }}
             onChange={(e) => setSenha(e.target.value)}
           />
+        </form>
+
           <MDBBtn
             type="submit"
             className="mb-4 bg-black"
@@ -69,7 +70,6 @@ export default function Login() {
               </a>
             </p>
           </div>
-        </form>
       </div>
     </div>
   );

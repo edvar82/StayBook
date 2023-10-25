@@ -1,34 +1,51 @@
-import React from "react";
+import React, {useState, useRef} from "react";
 import { MDBInput, MDBBtn } from "mdb-react-ui-kit";
 import img from "../../assets/img/logo.png";
 import { useNavigate } from "react-router-dom";
+import { Toast } from 'primereact/toast'
+
+
+//theme
+import "primereact/resources/themes/lara-light-indigo/theme.css";
+import "primereact/resources/primereact.min.css";
+        
 
 import axios from "axios";
 
 export default function Register() {
   const navigate = useNavigate();
+  const toast = useRef(null);
+
+  const [email, setEmail] = useState("");
+  const [nome, setNome] = useState("");
+  const [endereco, setEndereco] = useState("");
+  const [telefone, setTelefone] = useState("");
+  const [cpf, setCpf] = useState("");
+  const [senha, setSenha] = useState("");
+  const [confirmarSenha, setConfirmarSenha] = useState("");
 
   async function handleCreateCliente(event) {
     event.preventDefault();
 
-    const formaData = new FormData(event.target);
-
-    const data = Object.fromEntries(formaData);
+    if(senha !== confirmarSenha) {
+      toast.current.show({ severity: 'error', summary: 'Erro', detail: 'Senhas não coincidem' });
+      return;
+    }
 
     try {
-      // await axios.post(`http://localhost:3001/cliente`, {
-      //   email: data.email,
-      //   nome: data.nome,
-      //   endereco: data.endereco,
-      //   telefone: data.telefone,
-      //   cpf: data.cpf,
-      //   senha: data.senha,
-      // });
-      alert(data.cpf);
+      await axios.post(`http://localhost:3001/cliente`, {
+        email,
+        nome,
+        endereco,
+        telefone,
+        cpf,
+        senha,
+      });
+      await toast.current.show({ severity: 'success', summary: 'Success', detail: 'Cliente cadastrado com sucesso' });
       // navigate("/home");
     } catch (err) {
       console.log(err);
-      alert("Erro ao cadastrar cliente");
+      toast.current.show({ severity: 'error', summary: 'Error', detail: 'Erro ao cadastrar cliente' });
     }
   }
 
@@ -37,6 +54,7 @@ export default function Register() {
       className="d-flex justify-content-center align-items-center"
       style={{ minHeight: "100vh" }}
     >
+      <Toast ref={toast} />
       <div style={{ maxWidth: "420px", width: "100%" }}>
         <form onSubmit={handleCreateCliente}>
           <img className="pb-4 d-block mx-auto" src={img} alt="logo" />
@@ -47,6 +65,7 @@ export default function Register() {
             id="email"
             label="Email"
             style={{ width: "100%", height: "42px" }}
+            onChange={(e) => setEmail(e.target.value)}
           />
 
           <MDBInput
@@ -55,6 +74,7 @@ export default function Register() {
             id="nome"
             label="Nome"
             style={{ width: "100%", height: "42px" }}
+            onChange={(e) => setNome(e.target.value)}
           />
           <MDBInput
             className="mb-4"
@@ -62,6 +82,7 @@ export default function Register() {
             id="cpf"
             label="Cpf"
             style={{ width: "100%", height: "42px" }}
+            onChange={(e) => setCpf(e.target.value)}
           />
           <MDBInput
             className="mb-4"
@@ -69,6 +90,7 @@ export default function Register() {
             id="telefone"
             label="Telefone"
             style={{ width: "100%", height: "42px" }}
+            onChange={(e) => setTelefone(e.target.value)}
           />
           <MDBInput
             className="mb-4"
@@ -76,6 +98,7 @@ export default function Register() {
             id="endereco"
             label="Endereço"
             style={{ width: "100%", height: "42px" }}
+            onChange={(e) => setEndereco(e.target.value)}
           />
 
           <MDBInput
@@ -84,6 +107,7 @@ export default function Register() {
             id="senha"
             label="Senha"
             style={{ width: "100%", height: "42px" }}
+            onChange={(e) => setSenha(e.target.value)}
           />
 
           <MDBInput
@@ -92,6 +116,7 @@ export default function Register() {
             id="confirmarSenha"
             label="Confirmar senha"
             style={{ width: "100%", height: "42px" }}
+            onChange={(e) => setConfirmarSenha(e.target.value)}
           />
           <MDBBtn
             type="submit"

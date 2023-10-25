@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
 
-import { useState } from "react";
+import { useState } from 'react';
 
 import {
   MDBCol,
@@ -21,31 +21,42 @@ import {
   MDBBtn,
   MDBModalFooter,
   MDBInput,
-} from "mdb-react-ui-kit";
-import Navbar from "../../components/Navbar";
+} from 'mdb-react-ui-kit';
+import Navbar from '../../components/Navbar';
 
-import luxo from "../../assets/img/luxo.jpg";
-import axios from "axios";
+import luxo from '../../assets/img/luxo.jpg';
+import axios from 'axios';
+import { faLocust } from '@fortawesome/free-solid-svg-icons';
 
 export default function Profile() {
-  const [clienteId, setClienteId] = useState("");
+  const [clienteId, setClienteId] = useState('');
 
   const [basicModal, setBasicModal] = useState(false);
-  const [nomeTitular, setNomeTitular] = useState("");
-  const [NCartao, setNCartao] = useState("");
-  const [Validade, setValidade] = useState("");
-  const [CVV, setCVV] = useState("");
+  const [nomeTitular, setNomeTitular] = useState('');
+  const [NCartao, setNCartao] = useState('');
+  const [Validade, setValidade] = useState('');
+  const [CVV, setCVV] = useState('');
 
-  const [nome, setNome] = useState("");
-  const [email, setEmail] = useState("");
-  const [telefone, setTelefone] = useState("");
-  const [endereco, setEndereco] = useState("");
-
+  const [nome, setNome] = useState('');
+  const [email, setEmail] = useState('');
+  const [telefone, setTelefone] = useState('');
+  const [endereco, setEndereco] = useState('');
   const [cartao, setCartao] = useState([]); //cartões que estão cadastrados
 
+  const [hospedagens, setHospedagens] = useState([]); //hospedagens que estão cadastrados
+  const [existHospedagens, setExistHospedagens] = useState(false); //hospedagens que estão cadastrados; //hospedagens que estão cadastrados
+
+  function formatDateToDDMMYY(dateString) {
+    const date = new Date(dateString);
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear().toString().slice(-2); // Pega apenas os dois últimos dígitos do ano
+
+    return `${day}/${month}/${year}`;
+  }
   async function getClienteById(clienteId) {
     const response = await axios.get(
-      `http://localhost:3001/cliente/${clienteId}`
+      `http://localhost:3001/cliente/${clienteId}`,
     );
 
     setNome(response.data.nome);
@@ -56,11 +67,24 @@ export default function Profile() {
 
   async function getCartaoFromCliente(clienteId) {
     const response = await axios.get(
-      `http://localhost:3001/cartao/${clienteId}`
+      `http://localhost:3001/cartao/${clienteId}`,
     );
 
     setCartao(response.data);
   }
+
+  async function getHospedagensFromCliente(clienteId) {
+    const response = await axios.get(
+      `http://localhost:3001/reserva/cliente/${clienteId}`,
+    );
+
+    setHospedagens(response.data);
+    if (response.data.length > 0) {
+      setExistHospedagens(true);
+    }
+    console.log(hospedagens);
+  }
+
 
   async function createCartao() {
     await axios
@@ -70,27 +94,28 @@ export default function Profile() {
         dataValidade: Validade,
         cvv: CVV,
       })
-      .then(alert("Cartao adicionado com sucesso"));
+      .then(alert('Cartao adicionado com sucesso'));
   }
 
   useEffect(() => {
-    const clienteId = localStorage.getItem("clienteId");
+    const clienteId = localStorage.getItem('clienteId');
     setClienteId(clienteId);
     getClienteById(clienteId);
     getCartaoFromCliente(clienteId);
+    getHospedagensFromCliente(clienteId);
   }, []);
 
   const toggleShow = () => setBasicModal(!basicModal);
   return (
-    <div style={{ height: "100vh" }} className="scrool">
+    <div style={{ height: '100vh' }} className="scrool">
       <Navbar />
       <section
         style={{
-          backgroundColor: "#fff",
-          height: "100%",
-          width: "100%",
-          zoom: "0.9",
-          marginTop: "-40px",
+          backgroundColor: '#fff',
+          height: '100%',
+          width: '100%',
+          zoom: '0.9',
+          marginTop: '-40px',
         }}
       >
         <MDBContainer className="h-100 py-5">
@@ -98,22 +123,22 @@ export default function Profile() {
             <MDBCol lg="3" className="d-flex justify-content-center">
               <MDBCard
                 className="mb-4 p-4"
-                style={{ marginTop: "20px", height: "80%" }}
+                style={{ marginTop: '20px', height: '80%' }}
               >
                 <MDBCardBody className="text-center">
                   <MDBCardImage
                     src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
                     alt="avatar"
                     className="rounded-circle"
-                    style={{ width: "200px", height: "200px" }}
+                    style={{ width: '200px', height: '200px' }}
                     fluid
                   />
-                  <MDBCardTitle className="mt-3" style={{ fontSize: "2rem" }}>
+                  <MDBCardTitle className="mt-3" style={{ fontSize: '2rem' }}>
                     {nome}
                   </MDBCardTitle>
                   <MDBCardText
                     className="text-muted mb-4"
-                    style={{ fontSize: "1.2rem" }}
+                    style={{ fontSize: '1.2rem' }}
                   >
                     Amante de tecnologia e colecionador de momentos
                     inesquecíveis
@@ -180,11 +205,11 @@ export default function Profile() {
 
               <MDBRow className="ml-3">
                 <div className="d-flex flex-row">
-                  <MDBCard className="mb-4 p-4 w-75" style={{ width: "10px" }}>
+                  <MDBCard className="mb-4 p-4 w-75" style={{ width: '10px' }}>
                     <MDBCardBody>
                       <MDBCardTitle
                         className="mb-4"
-                        style={{ fontSize: "1.5rem" }}
+                        style={{ fontSize: '1.5rem' }}
                       >
                         Métodos de Pagamento
                       </MDBCardTitle>
@@ -244,7 +269,7 @@ export default function Profile() {
                       <div
                         className="ms-auto"
                         onClick={toggleShow}
-                        style={{ paddingTop: "10px", cursor: "pointer" }}
+                        style={{ paddingTop: '10px', cursor: 'pointer' }}
                       >
                         <p className="text-primary">
                           <MDBIcon
@@ -260,66 +285,53 @@ export default function Profile() {
 
                   <MDBCard
                     className="mb-4 p-4 w-75"
-                    style={{ width: "10px", marginLeft: "15px" }}
+                    style={{ width: '10px', marginLeft: '15px' }}
                   >
                     <MDBCardBody>
                       <MDBCardTitle
                         className="mb-4"
-                        style={{ fontSize: "1.5rem" }}
+                        style={{ fontSize: '1.5rem' }}
                       >
                         Minhas Hospedagens
                       </MDBCardTitle>
-                      <MDBCard
-                        style={{
-                          borderRadius: "10px",
-                          boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)",
-                          width: "100%",
-                        }}
-                      >
-                        <MDBRow className="g-0">
-                          <MDBCol md="8">
-                            <MDBCardBody>
-                              <MDBCardTitle>Hotel Resort Do Gunga</MDBCardTitle>
-                              <MDBCardText>De 24/03/23 à 27/03/23</MDBCardText>
-                              <MDBCardText>Status: A ser feita</MDBCardText>
-                            </MDBCardBody>
-                          </MDBCol>
-                          <MDBCol md="4">
-                            <MDBCardImage
-                              style={{ height: "9rem", borderRadius: "10px" }}
-                              src={luxo}
-                              alt="..."
-                              fluid
-                            />
-                          </MDBCol>
-                        </MDBRow>
-                      </MDBCard>
-                      <MDBCard
-                        style={{
-                          borderRadius: "10px",
-                          boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)",
-                          width: "100%",
-                          marginTop: "15px",
-                        }}
-                      >
-                        <MDBRow className="g-0">
-                          <MDBCol md="8">
-                            <MDBCardBody>
-                              <MDBCardTitle>Hotel Resort Do Gunga</MDBCardTitle>
-                              <MDBCardText>De 24/03/23 à 27/03/23</MDBCardText>
-                              <MDBCardText>Status: A ser feita</MDBCardText>
-                            </MDBCardBody>
-                          </MDBCol>
-                          <MDBCol md="4">
-                            <MDBCardImage
-                              style={{ height: "9rem", borderRadius: "10px" }}
-                              src={luxo}
-                              alt="..."
-                              fluid
-                            />
-                          </MDBCol>
-                        </MDBRow>
-                      </MDBCard>
+                      {existHospedagens ? (
+                        hospedagens.map((hosp) => (
+                          <MDBCard
+                            style={{
+                              borderRadius: '10px',
+                              boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
+                              width: '100%',
+                            }}
+                          >
+                            <MDBRow className="g-0">
+                              <MDBCol md="8">
+                                <MDBCardBody>
+                                  <MDBCardTitle>{hosp.hotelName}</MDBCardTitle>
+                                  <MDBCardText>
+                                    De {formatDateToDDMMYY(hosp.checkIn)} à {formatDateToDDMMYY(hosp.checkOut)}
+                                  </MDBCardText>
+                                  <MDBCardText>
+                                    Valor: {hosp.valor}
+                                  </MDBCardText>
+                                </MDBCardBody>
+                              </MDBCol>
+                              <MDBCol md="4">
+                                <MDBCardImage
+                                  style={{
+                                    height: '9rem',
+                                    borderRadius: '10px',
+                                  }}
+                                  src={hosp.hotelImg}
+                                  alt="..."
+                                  fluid
+                                />
+                              </MDBCol>
+                            </MDBRow>
+                          </MDBCard>
+                        ))
+                      ) : (
+                        <div>Nenhuma hospedagem</div>
+                      )}
                     </MDBCardBody>
                   </MDBCard>
                 </div>

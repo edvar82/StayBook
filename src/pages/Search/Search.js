@@ -18,6 +18,19 @@ export default function Search() {
     getData();
   }, []);
 
+  function extrairNumeros(valorEmReais) {
+    // Usa uma expressão regular para encontrar todos os dígitos e pontos flutuantes
+    const numeros = valorEmReais.match(/\d|\./g);
+  
+    // Se não houver números, retorna vazio
+    if (numeros === null) {
+      return "";
+    }
+  
+    // Concatena os números encontrados para formar a string final
+    return numeros.join("");
+  }
+
   async function getData() {
     setIsLoading(true);
     const q = localStorage.getItem("lugar");
@@ -103,8 +116,9 @@ export default function Search() {
           "Não foi possível encontrar nenhum hotel com essas especificações";
         ("Clique em voltar e tente novamente");
       } else {
-        setHotel(data2.data.propertySearch.properties);
         console.log(data2.data.propertySearch.properties);
+        setHotel(data2.data.propertySearch.properties);
+        console.log('oi:', data2.data.propertySearch.properties[0]);
         setIsLoading(false);
       }
     } catch (error) {
@@ -132,7 +146,7 @@ export default function Search() {
         {isLoading ? (
           <Loanding />
         ) : (
-          <div className="cards2">
+          <div className="cards2" style={{marginRight: '10px'}}>
             {hotel &&
               hotel.map((val, index) => (
                 <div className="card2" key={val.id}>
@@ -140,7 +154,7 @@ export default function Search() {
                     className="image"
                     style={{ margin: "auto", paddingRight: "20px" }}
                   >
-                    <img src={val.propertyImage.image.url} alt={val.name} />
+                    <img src={val.propertyImage?.image.url} alt="" />
                     <div className="text">
                       <strong>{val.name}</strong>
                       {val.neighborhood && <span>{val.neighborhood.name}</span>}
@@ -165,7 +179,7 @@ export default function Search() {
                     <button
                       className="buttonEnd"
                       onClick={() => {
-                        savePrice(val.mapMarker.label);
+                        savePrice(extrairNumeros(val.mapMarker.label));
                         navigate(`/description/${val.id}`);
                       }}
                     >
