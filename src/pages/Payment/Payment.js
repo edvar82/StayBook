@@ -93,7 +93,8 @@ export default function PaymentPage() {
   async function payment() {
     try {
       const response = await axios.post(`http://localhost:3001/payment`, {
-        clientId: localStorage.getItem("clienteId"),
+        // clientId: localStorage.getItem("clienteId"),
+        clienteId: "68a84a6b-65bf-4079-a759-16c38cc4f91d",
         hotelId: "3312cacb-7088-43d7-b32a-766f08f33f65", // aqui coloca o id do hotel
         nomeHotel: nome,
         checkIn: dataIn,
@@ -315,7 +316,7 @@ export default function PaymentPage() {
                   <MDBBtn
                     size="lg"
                     style={{ backgroundColor: "black" }}
-                    onClick="payment"
+                    onClick={payment}
                   >
                     Usar esta forma de pagamento
                   </MDBBtn>
